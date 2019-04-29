@@ -1,0 +1,56 @@
+{
+  "name": "Flack",
+  "license": "UNLICENCED",
+  "private": true,
+  "scripts": {
+    "start": "webpack --watch --mode=developmnent"
+  },
+  "dependencies": {
+    "Base64": "^1.0.1",
+    "prop-types": "^15.6.2",
+    "react": "16.4.1",
+    "react-native": "0.56.0",
+    "react-native-code-push": "^5.4.0",
+    "react-native-device-info": "^0.22.2",
+    "react-native-exception-handler": "^2.9.0",
+    "react-native-fs": "^2.13.3",
+    "react-native-google-analytics-bridge": "^5.8.0",
+    "react-native-hockeyapp": "^0.5.3",
+    "react-native-i18n": "^2.0.15",
+    "react-native-image-pan-zoom": "^2.1.11",
+    "react-native-image-picker": "^0.28.0",
+    "react-native-image-resizer": "^1.0.1",
+    "react-native-keyboard-aware-scroll-view": "^0.6.0",
+    "react-native-linear-gradient": "^2.4.0",
+    "react-native-maps": "^0.21.0",
+    "react-native-parallax-scroll-view": "^0.21.3",
+    "react-native-restart": "^0.0.6",
+    "react-native-snap-carousel": "^3.7.2",
+    "react-native-transformable-image": "^0.0.18",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "ajv": "^5.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "23.4.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-react-native": "^5",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.10.0",
+    "jest": "23.4.1",
+    "prettier": "^1.14.2",
+    "prettier-eslint": "^8.8.2",
+    "react-test-renderer": "16.4.1",
+    "readline-promise": "^1.0.4"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

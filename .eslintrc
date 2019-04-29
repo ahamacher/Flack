@@ -1,0 +1,83 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error"
+    ],
+    "indent": [
+      "error"
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 130,
+        "ignoreComments": true
+      }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "info",
+          "warning",
+          "error"
+        ]
+      }
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
+      }
+    ],
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-bitwise": "off",
+    "no-underscore-dangle": "off",
+    "global-require": "off",
+    "class-methods-use-this": "off",
+    "no-throw-literal": "off",
+    "spaced-comment": "off",
+    "no-debugger": "off",
+    "import/extensions": "never",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "import/no-dynamic-require": "off",
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": [
+          "@viewfinder/(app|assets|base-components|base-text-components|common-components|constants|i18n|redux|utility|views)$"
+        ]
+      }
+    ],
+    "react/jsx-filename-extension": "on",
+    "react/forbid-prop-types": [
+      true,
+      {
+        "forbid": [
+          "any",
+          "array"
+        ]
+      }
+    ],
+    "react/jsx-one-expression-per-line": "off",
+    "react/prefer-stateless-function": "off"
+  }
+}
