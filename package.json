@@ -1,7 +1,11 @@
 {
   "name": "Flack",
   "private": true,
+  "scripts": {
+    "start": "webpack --watch --mode=development"
+  },
   "dependencies": {
+    "jshint": "^2.10.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
@@ -13,6 +17,7 @@
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
