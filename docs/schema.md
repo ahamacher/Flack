@@ -12,37 +12,18 @@
 
 * index on `email, unique: true`
 * index on `session_token, unique: true`
-* has_many `workspaces` relationship through `channels`
-
-### `workspaces`
-
-| column name        | data type | details                        |
-|:-------------------|:----------|:-------------------------------|
-| `id`               | integer   | not null, primary key          |
-| `name`             | string    | not null                       |
-| `primary_owner_id` | integer   | not null, indexed, foreign key |
-| `url`              | string    | not null, indexed, unique      |
-| `created_at`       | datetime  | not null                       |
-| `updated_at`       | datetime  | not null                       |
-
-* index on `email, unique: true`
-* index on `primary_owner_id, unique: true`
-* index on `url, unique: true`
-* `primary_owner_id` references `users`
-* has_many `users` relationship through `channels` 
 
 ### `channels`
 
 | column name    | data type | details                        |
 |:---------------|:----------|:-------------------------------|
 | `id`           | integer   | not null, primary key          |
-| `workspace_id` | integer   | not null, indexed, foreign key |
 | `user_id`      | integer   | not null, indexed, foreign key |
+| `is_dm`        | boolean   | not null, default: false       |
 | `default`      | boolean   | not null, default: false       |
 | `created_at`   | datetime  | not null                       |
 | `updated_at`   | datetime  | not null                       |
 
-* index on `workspace_id, unique: true`
 * index on `user_id, unique: true`
 * `workspace_id` references `workspaces`
 * `user_id` references `users`
@@ -65,3 +46,18 @@
 * `author_id` references `users`
 * `parent_id` references `messages`
 * `channel_id` references `channel`
+
+### `dm_joins`
+| column name    | data type | details                        |
+|:---------------|:----------|:-------------------------------|
+| `id`           | integer   | not null, primary key          |
+| `user_id`      | integer   | not null, indexed, foreign key |
+| `channel_id`   | integer   | not null, indexed, foreign key |
+| `created_at`   | datetime  | not null                       |
+| `updated_at`   | datetime  | not null                       |
+
+* index on `user_id`
+* index on `channel_id`
+* `user_id` references `users`
+* `channel_id` references `channel`
+* `users` to `channel` has a `many to many` relationship
