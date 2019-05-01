@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { logout } from "../../actions/session_actions";
-import Splash from "./splash";
+import Channel from "./channel";
 
 const mapStateToProps = ({ entities, session }) => ({
   currentUser: entities.users[session.id]
@@ -13,4 +13,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Splash);
+)(Channel);

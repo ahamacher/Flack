@@ -1,13 +1,16 @@
-import React from 'react';
-import SplashContainer from './splash/splash_container';
+import React from "react";
+// import { Route } from "react-router-dom";
+import MainContent from "./main_content";
 
 const App = () => (
   <div>
-    <header>
-    <h1>Flack</h1>
-      <SplashContainer />
-    </header>
+    <main>
+      <MainContent />
+    </main>
+    <footer>
+      <p>some footer information here</p>
+    </footer>
   </div>
-)
+);
 
-export default App
+export default App;
