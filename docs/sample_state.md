@@ -8,14 +8,8 @@
       email: "MarioM@gmail.com",
       username: "mister mario" 
     },
-    workspaces: {
-      id: 3,
-      name: "Nintendo Fan",
-      url: "https://nintendo-fan.flack.com"
-    },
     channels: {
       id: 325,
-      workspace_id: 3,
       default: true,
       message_ids: [3, 4, 6, 17, 19]
     },
@@ -58,7 +52,6 @@
   errors: {
     session: ["User with that username / password doesnt not exist"],
     user: ["Invalid username / password"],
-    workspace: ["You do not have access to this Workspace"],
   },
   session: { currentUser: 6 }
 }
