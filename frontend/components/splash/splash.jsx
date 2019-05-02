@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "./splash_header";
@@ -85,11 +86,9 @@ class Splash extends React.Component {
   }
 
   render() {
-    const { email } = this.state;
-
     return (
       <div>
-        <header>
+        <header className="splash-head">
           <Header />
         </header>
         <main>

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-for */
@@ -98,7 +99,7 @@ class SessionForm extends React.Component {
     const { email, password } = this.state;
     return (
       <div className="session-page">
-        <header>
+        <header className="form-head">
           <Header />
         </header>
         <div className="session-form">

@@ -2,7 +2,12 @@
   "name": "Flack",
   "private": true,
   "scripts": {
-    "start": "webpack --watch --mode=development"
+    "start": "webpack --watch --mode=development",
+    "postinstall": "webpack"
+  },
+  "engines": {
+    "node": "8.4.0",
+    "npm": "6.1.0"
   },
   "dependencies": {
     "react": "^16.8.6",
@@ -12,6 +17,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "typed.js": "^2.0.10",
     "webpack": "^4.30.0"
   },
   "devDependencies": {

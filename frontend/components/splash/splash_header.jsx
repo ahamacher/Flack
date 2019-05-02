@@ -5,40 +5,53 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const email = "";
   return (
-    <header>
+    <>
       <Link to="/" className="logo">
         Flack
       </Link>
       <div className="nav-links">
         <ul>
           <li>
-            <a href="#">Why Flack?</a>
+            <a href="#" className="navlink">
+              Why Flack?
+            </a>
           </li>
           <li>
-            <a href="#">Solutions</a>
+            <a href="#" className="navlink">
+              Solutions
+            </a>
           </li>
           <li>
-            <a href="#">Resources</a>
+            <a href="#" className="navlink">
+              Resources
+            </a>
           </li>
           <li>
-            <a href="#">Pricing</a>
+            <a href="#" className="navlink">
+              Pricing
+            </a>
+          </li>
+          <li className="head-right">
+            <Link to="/login" className="navlink">
+              Sign in
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={{
+                pathname: "/signup",
+                state: {
+                  email
+                }
+              }}
+              className="signup"
+            >
+              Get started
+            </Link>
           </li>
         </ul>
       </div>
-      <div className="login">
-        <Link to="/login">Sign in</Link>
-      </div>
-      <Link
-        to={{
-          pathname: "/signup",
-          state: {
-            email
-          }
-        }}
-      >
-        Get started
-      </Link>
-    </header>
+    </>
   );
 };
 
