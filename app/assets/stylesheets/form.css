@@ -1,0 +1,124 @@
+.form-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;  
+  height: 70px;
+  margin-bottom: 60px;
+  align-content: center;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  background: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.formtext {
+  margin-bottom: 16px;
+}
+
+.form-title {
+  font-size: 32px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  line-height: 40px;
+  font-weight: 600;
+}
+
+.form-logo {
+  padding: 20px 0 0 16px;
+  display: inline-block;
+  font-family: 'Slack-Circular-bold', Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  
+}
+
+.header-sign-in {
+  font-size: 16px;
+  line-height: 1em;
+  height: 38px;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  padding: 10px 14px 12px;
+  text-decoration: none;
+  color: #616061;
+  border: 2px solid #616061;
+  border-radius: 4px;
+  margin: 16px 17px 0 17px;
+}
+
+.session-page {
+  padding: 96px 32px 250px;
+  background: #F8F8F8;
+  display: flex;
+  justify-content: center;
+}
+
+.session-form {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 32px 32px 16px;
+  border-radius: 4px;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.session-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 84px 10px;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.session-form input {
+  border: 1px solid #696969;
+  font-family: "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  line-height: 1.25;
+  border-radius: 4px;
+  padding: 18px 16px;
+  font-weight: 400;
+  margin: 0 0 8px 0;
+  width: 320px;
+}
+
+.session-form form :last-child {
+  border: 1px solid #696969;
+  font-family: "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  line-height: 1.25;
+  border-radius: 4px;
+  padding: 18px 16px;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+  background: #007A5A;
+  width: 354px;
+  margin-bottom: 32px;
+}
+
+.formfoot {
+  color: #1d1c1d;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.formfoot a {
+  color: #1264a3;
+  text-decoration: none;
+}
+
+.formfoot button {
+  color: #1264a3;
+  text-decoration: none;
+}

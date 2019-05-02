@@ -6,9 +6,28 @@ import Header from "./splash_header";
 class Splash extends React.Component {
   constructor(props) {
     super(props);
+    const arr = ["picture-l", "picture-m", "picture-s"];
     this.state = {
-      email: ""
+      email: "",
+      arr
     };
+  }
+
+  componentDidMount() {
+    // this.loop();
+    // this.swap = setInterval(this.loop, 4000);
+  }
+
+  componentWillUnmount() {
+    // clearInterval(this.swap);
+  }
+
+  loop() {
+    const last = this.state.arr[2];
+    const middle = this.state.arr[1];
+    const first = this.state.arr[0];
+
+    this.setState({ arr: [middle, last, first] });
   }
 
   handleChange(form) {
@@ -24,6 +43,7 @@ class Splash extends React.Component {
             type="text"
             onChange={this.handleChange("email")}
             value={email}
+            placeholder="Email address"
           />
           <Link
             to={{
@@ -37,9 +57,8 @@ class Splash extends React.Component {
           </Link>
         </span>
         <br />
-        <span>
-          Already using Flack?
-          <Link to="/login">Sign in.</Link>
+        <span className="greeting-subtext">
+          Already using Flack? <Link to="/login">Sign in.</Link>
         </span>
       </div>
     );
@@ -59,9 +78,10 @@ class Splash extends React.Component {
   }
 
   imageLoop() {
+    const { arr } = this.state;
     return (
       <>
-        <div className="picture-l">
+        <div className={arr[0]}>
           <img
             src="https://3c1703fe8d.site.internapcdn.net/newman/csz/news/800/2017/cooperationd.jpg"
             alt=""
@@ -70,7 +90,7 @@ class Splash extends React.Component {
             These people use Flack to communicate and build teamowork
           </p>
         </div>
-        <div className="picture-m">
+        <div className={arr[1]}>
           <img
             src="https://assets.entrepreneur.com/content/3x2/2000/20150327221922-success-winning-inspirational.jpeg"
             alt=""
@@ -80,7 +100,7 @@ class Splash extends React.Component {
             promotions
           </p>
         </div>
-        <div className="picture-s">
+        <div className={arr[2]}>
           <img
             src="https://www.alturalearning.com/wp-content/uploads/tips-for-better-communication.jpg"
             alt=""

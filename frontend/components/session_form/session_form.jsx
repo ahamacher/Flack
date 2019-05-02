@@ -11,6 +11,7 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoUser = this.demoUser.bind(this);
 
     let { email } = this.props;
     if (typeof email === "object") {
@@ -38,6 +39,13 @@ class SessionForm extends React.Component {
     const { email, password } = this.state;
     this.props
       .action({ email, password })
+      .then(() => this.props.history.push("/channel"));
+  }
+
+  demoUser() {
+    debugger;
+    this.props
+      .action({ email: "test@user.com", password: "password" })
       .then(() => this.props.history.push("/channel"));
   }
 
@@ -72,24 +80,27 @@ class SessionForm extends React.Component {
     const email = "";
     if (formStyle === "login") {
       return (
-        <div>
-          <span className="formtext">Don't have a login?</span>
-          <Link
-            to={{
-              pathname: "/signup",
-              state: {
-                email
-              }
-            }}
-          >
-            Sign up for one
-          </Link>
+        <div className="formfoot">
+          <div>
+            <span className="formtext">Don't have a login? </span>
+            <Link
+              to={{
+                pathname: "/signup",
+                state: {
+                  email
+                }
+              }}
+            >
+              Sign up for one
+            </Link>
+          </div>
+          <button type="button" onClick={this.demoUser}>Demo Flack</button>
         </div>
       );
     }
     return (
       <div>
-        <span className="formtext">Already have a login?</span>
+        <span className="formtext">Already have a login? </span>
         <Link to="/login">Sign in</Link>
       </div>
     );
@@ -99,31 +110,25 @@ class SessionForm extends React.Component {
     const { email, password } = this.state;
     return (
       <div className="session-page">
-        <header className="form-head">
-          <Header />
-        </header>
+        <Header />
         <div className="session-form">
           {this.formHead()}
           {this.formSubtext()}
           <form onSubmit={this.handleSubmit}>
-            <label>
-              Email:
-              <input
-                type="text"
-                onChange={this.handleChange("email")}
-                value={email}
-              />
-            </label>
+            <input
+              type="text"
+              onChange={this.handleChange("email")}
+              value={email}
+              placeholder="Email address"
+            />
             <br />
-            <label>
-              Password:
-              <input
-                type="password"
-                onChange={this.handleChange("password")}
-                value={password}
-              />
-            </label>
-            <input type="submit" value="Continue" />
+            <input
+              type="password"
+              onChange={this.handleChange("password")}
+              value={password}
+              placeholder="Password"
+            />
+            <input type="submit" value="Continue →" />
           </form>
           {this.formFoot()}
         </div>

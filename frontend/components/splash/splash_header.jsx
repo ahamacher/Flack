@@ -8,6 +8,12 @@ const Header = () => {
     <>
       <div className="nav-links">
         <Link to="/" className="logo">
+          <img
+            src="https://i.imgur.com/HGKt24f.png"
+            width="25px"
+            height="25px"
+            alt=""
+          />{" "}
           Flack
         </Link>
         <ul>
