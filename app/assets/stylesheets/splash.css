@@ -201,7 +201,7 @@ body {
 .picture-m img {
   object-fit: cover;
 
-  filter: grayscale();
+  filter: grayscale(100%);
   width: 300px;
   height: 300px;
 }
@@ -216,7 +216,7 @@ body {
 .picture-s img {
   object-fit: cover;
 
-  filter: grayscale();
+  filter: grayscale(100%);
   width: 250px;
   height: 250px;
 }
