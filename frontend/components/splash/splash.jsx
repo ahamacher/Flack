@@ -60,32 +60,34 @@ class Splash extends React.Component {
 
   imageLoop() {
     return (
-      <div className="pictures">
-        <div>
+      <>
+        <div className="picture-l">
           <img
             src="https://3c1703fe8d.site.internapcdn.net/newman/csz/news/800/2017/cooperationd.jpg"
             alt=""
-            className="picture-l"
           />
-          <p>Building greate teamwork with Flack</p>
+          <p className="imgsub">
+            These people use Flack to communicate and build teamowork
+          </p>
         </div>
-        <div>
+        <div className="picture-m">
           <img
             src="https://assets.entrepreneur.com/content/3x2/2000/20150327221922-success-winning-inspirational.jpeg"
             alt=""
-            className="picture-m"
           />
-          <p>Become sucessful with Flack</p>
+          <p className="imgsub">
+            Become sucessful with Flack, Flack users are better situated for
+            promotions
+          </p>
         </div>
-        <div>
+        <div className="picture-s">
           <img
             src="https://www.alturalearning.com/wp-content/uploads/tips-for-better-communication.jpg"
             alt=""
-            className="picture-s"
           />
-          <p>Learn to communicate better with Flack</p>
+          <p className="imgsub">Learn to communicate better with Flack</p>
         </div>
-      </div>
+      </>
     );
   }
 

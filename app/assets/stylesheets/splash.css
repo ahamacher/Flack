@@ -1,29 +1,35 @@
+/* 
+@font-face {
+    font-family: 'Slack-Circular-bold';
+    src: url('./fonts/slackcircular-bold-webfont.eot');
+    src: url('./fonts/slackcircular-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/slackcircular-bold-webfont.woff2') format('woff2'),
+         url('./fonts/slackcircular-bold-webfont.woff') format('woff'),
+         url('./fonts/slackcircular-bold-webfont.ttf') format('truetype'),
+         url('./fonts/slackcircular-bold-webfont.svg#jschijslackcircular-boldbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'circular-book';
+    src: url('./fonts/circular-book-webfont.eot');
+    src: url('./fonts/circular-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/circular-book-webfont.woff2') format('woff2'),
+         url('./fonts/circular-book-webfont.woff') format('woff'),
+         url('./fonts/circular-book-webfont.ttf') format('truetype'),
+         url('./fonts/circular-book-webfont.svg#circular-book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+} */
+
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-}
-
-.picture-l {
-  object-fit: cover;
-
-  width: 500px;
-  height: 500px;
-}
-.picture-m {
-  object-fit: cover;
-
-  filter: grayscale();
-  width: 300px;
-  height: 300px;
-}
-.picture-s {
-  object-fit: cover;
-
-  filter: grayscale();
-  width: 250px;
-  height: 250px;
 }
 
 .splash-head {
@@ -36,7 +42,7 @@ body {
 
 .logo {
   display: inline-block;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Slack-Circular-bold', Arial, Helvetica, sans-serif;
   font-size: 25px;
   font-weight: bold;
   text-decoration: none;
@@ -63,7 +69,7 @@ body {
 .navlink {
   text-decoration: none;
   color: #454545;
-  font-family: Slack-Circular-Pro,"Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  font-family: 'circular-book', "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
   font-weight: 400;
   font-size: 16px;
 }
@@ -93,7 +99,7 @@ body {
   padding: 12px 16px;
   border-radius: 5px;
   text-transform: uppercase;
-  font-family: Slack-Circular-Pro,"Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  font-family: "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
   font-weight: 700;
   letter-spacing: .8px;
   font-size: 14px;
@@ -117,28 +123,29 @@ body {
 }
 
 .appinfo p {
-  font-family: Slack-Circular-Pro,"Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  font-family: 'circular-book', "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
 }
 
 .main-content h1 {
-  font-family: Slack-Larsseit,"Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  font-family: 'Slack-Circular-bold',"Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
   font-size: 64px;
   max-width: 14em;
   font-weight: 700;
   grid-column: 2/span 4;
   grid-row: 1/spawn 2;
   z-index: 4;
+  margin: 0 0 0 80px;
 }
 
 .login-signup {
   grid-column: 5/span 4;
-  grid-row: 5;
+  grid-row: 4;
   z-index: 100;
 }
 
 .login-signup span input {
   border: 1px solid #696969;
-  font-family: Slack-Circular-Pro,"Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  font-family: "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
   line-height: 1.25;
   border-radius: 4px;
   padding: 18px 16px;
@@ -151,7 +158,7 @@ body {
   padding: 20px 40px 20px;
   border-radius: 5px;
   text-transform: uppercase;
-  font-family: Slack-Circular-Pro,"Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  font-family: 'circular-book', "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
   font-weight: 700;
   letter-spacing: .8px;
   font-size: 14px;
@@ -163,6 +170,68 @@ body {
 .login-signup :last-child {
   display: inline-block;
   margin-top: 16px;
-  font-family: Slack-Circular-Pro,"Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  font-family: 'circular-book', "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
   font-size: 14px;
+}
+
+.imgsub {
+  width: 100%;
+  font-family: 'circular-book', "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+}
+
+.picture-l img {
+  object-fit: cover;
+  width: 500px;
+  height: 500px;
+}
+
+.picture-l {
+  grid-column: 2/span 2;
+  grid-row: 3/span 3;
+  order: 1;
+  z-index: 4;
+}
+.picture-l .imgsub {
+  color: #696969;
+  font-family: sans-serif;
+  font-size: 14px;
+  margin: 6px 0 0 0;
+}
+
+.picture-m img {
+  object-fit: cover;
+
+  filter: grayscale();
+  width: 300px;
+  height: 300px;
+}
+
+.picture-m {
+  grid-column-start: 5;
+  grid-row: 5/span 2;
+  order: 1;
+  z-index: 4;
+}
+
+.picture-s img {
+  object-fit: cover;
+
+  filter: grayscale();
+  width: 250px;
+  height: 250px;
+}
+
+.picture-s {
+  grid-column: 1/span 2;
+  grid-row: 2/span 2;
+  order: 1;
+  z-index: 0;
+}
+
+.picture-s .imgsub {
+  display: none;
+}
+
+.picture-m .imgsub {
+  display: none;
 }
