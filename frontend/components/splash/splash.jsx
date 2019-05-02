@@ -33,9 +33,10 @@ class Splash extends React.Component {
               }
             }}
           >
-            Get Started
+            Try for free
           </Link>
         </span>
+        <br />
         <span>
           Already using Flack?
           <Link to="/login">Sign in.</Link>
@@ -46,7 +47,7 @@ class Splash extends React.Component {
 
   appInfo() {
     return (
-      <div>
+      <div className="appinfo">
         <p>
           Flack is a collaboration hub for work, no matter what work you do.
           It’s a place where conversations happen, decisions are made, and flack
@@ -64,6 +65,7 @@ class Splash extends React.Component {
           <img
             src="https://3c1703fe8d.site.internapcdn.net/newman/csz/news/800/2017/cooperationd.jpg"
             alt=""
+            className="picture-l"
           />
           <p>Building greate teamwork with Flack</p>
         </div>
@@ -71,6 +73,7 @@ class Splash extends React.Component {
           <img
             src="https://assets.entrepreneur.com/content/3x2/2000/20150327221922-success-winning-inspirational.jpeg"
             alt=""
+            className="picture-m"
           />
           <p>Become sucessful with Flack</p>
         </div>
@@ -78,6 +81,7 @@ class Splash extends React.Component {
           <img
             src="https://www.alturalearning.com/wp-content/uploads/tips-for-better-communication.jpg"
             alt=""
+            className="picture-s"
           />
           <p>Learn to communicate better with Flack</p>
         </div>
@@ -91,7 +95,7 @@ class Splash extends React.Component {
         <header className="splash-head">
           <Header />
         </header>
-        <main>
+        <main className="main-content">
           <h1>Imagine what you'll accomplish together</h1>
           {this.imageLoop()}
           {this.appInfo()}

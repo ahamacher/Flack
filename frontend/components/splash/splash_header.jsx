@@ -6,10 +6,10 @@ const Header = () => {
   const email = "";
   return (
     <>
-      <Link to="/" className="logo">
-        Flack
-      </Link>
       <div className="nav-links">
+        <Link to="/" className="logo">
+          Flack
+        </Link>
         <ul>
           <li>
             <a href="#" className="navlink">
@@ -31,7 +31,11 @@ const Header = () => {
               Pricing
             </a>
           </li>
-          <li className="head-right">
+        </ul>
+      </div>
+      <div className="head-right">
+        <ul>
+          <li>
             <Link to="/login" className="navlink">
               Sign in
             </Link>
