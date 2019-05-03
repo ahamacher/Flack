@@ -99,9 +99,11 @@ class SessionForm extends React.Component {
       );
     }
     return (
-      <div>
-        <span className="formtext">Already have a login? </span>
-        <Link to="/login">Sign in</Link>
+      <div className="formfoot">
+        <div>
+          <span className="formtext">Already have a login? </span>
+          <Link to="/login">Sign in</Link>
+        </div>
       </div>
     );
   }
@@ -128,7 +130,7 @@ class SessionForm extends React.Component {
               value={password}
               placeholder="Password"
             />
-            <input type="submit" value="Continue →" />
+            <input type="submit" value="Continue →" id="gbutton" />
           </form>
           {this.formFoot()}
         </div>

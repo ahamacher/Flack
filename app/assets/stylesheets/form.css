@@ -91,7 +91,7 @@
   width: 320px;
 }
 
-.session-form form :last-child {
+#gbutton {
   border: 1px solid #696969;
   font-family: "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
   line-height: 1.25;
@@ -104,6 +104,10 @@
   background: #007A5A;
   width: 354px;
   margin-bottom: 32px;
+}
+
+#gbutton:hover {
+  box-shadow: 0px 2px 2px lightgrey;
 }
 
 .formfoot {

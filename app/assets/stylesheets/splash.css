@@ -119,6 +119,10 @@ body {
   margin: 0 16px;
 }
 
+.signup :hover {
+  background-color: #4A154B;
+}
+
 .main-content {
   padding-top: 96px;
   display: grid;
@@ -165,7 +169,7 @@ body {
   font-weight: 400;
 }
 
-.login-signup span :nth-child(2) {
+.button {
   display: inline-block;
   background-color: #611f69;
   padding: 20px 40px 20px;
@@ -178,6 +182,18 @@ body {
   text-decoration: none;
   color: white;
   margin: 0 16px;
+}
+
+.button:hover {
+  background-color: #4A154B;
+}
+
+.signup:hover {
+  background-color: #4A154B;
+}
+
+.navlink:hover {
+  color: #1b1b1b;
 }
 
 .greeting-subtext {
@@ -285,6 +301,10 @@ body {
   width: 155px;
 }
 
+.footer-links ul li a:hover {
+  color: #1264a3;
+}
+
 .footer-links li{
   padding: 10px 0;
 }
@@ -300,6 +320,4 @@ body {
   color: #454545;
   font-weight: 600;
 }
-
-
 

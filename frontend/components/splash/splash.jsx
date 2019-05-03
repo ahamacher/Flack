@@ -52,6 +52,7 @@ class Splash extends React.Component {
                 email
               }
             }}
+            className="button"
           >
             Try for free
           </Link>
@@ -86,7 +87,7 @@ class Splash extends React.Component {
             src="https://3c1703fe8d.site.internapcdn.net/newman/csz/news/800/2017/cooperationd.jpg"
             alt=""
           />
-          <p className="imgsub">
+          <p className="imgsub active">
             These people use Flack to communicate and build teamowork
           </p>
         </div>
@@ -95,7 +96,7 @@ class Splash extends React.Component {
             src="https://assets.entrepreneur.com/content/3x2/2000/20150327221922-success-winning-inspirational.jpeg"
             alt=""
           />
-          <p className="imgsub">
+          <p className="imgsub active">
             Become sucessful with Flack, Flack users are better situated for
             promotions
           </p>
@@ -105,7 +106,7 @@ class Splash extends React.Component {
             src="https://www.alturalearning.com/wp-content/uploads/tips-for-better-communication.jpg"
             alt=""
           />
-          <p className="imgsub">Learn to communicate better with Flack</p>
+          <p className="imgsub active">Learn to communicate better with Flack</p>
         </div>
       </>
     );
