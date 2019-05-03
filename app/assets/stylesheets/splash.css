@@ -128,8 +128,8 @@ body {
   display: grid;
   grid-template-columns: 10% 13% 33% 22px 30% 12%;
   grid-template-rows: 110px 70px 125px auto 285px 30px;
-  margin-left: 60px;
-  margin-right: 60px;
+  margin: 0 auto;
+  max-width: 1080px;
 }
 
 .appinfo {
@@ -275,7 +275,7 @@ body {
 .app-footer {
   display: flex;
   justify-content: space-between;
-  padding-top: 80px;
+  padding-top: 130px;
   width: 100%;
 }
 

@@ -84,7 +84,7 @@ class Splash extends React.Component {
       <>
         <div className={arr[0]}>
           <img
-            src="https://3c1703fe8d.site.internapcdn.net/newman/csz/news/800/2017/cooperationd.jpg"
+            src="https://s3-us-west-1.amazonaws.com/flack-app/img/cooperationd.jpg"
             alt=""
           />
           <p className="imgsub active">
@@ -93,7 +93,7 @@ class Splash extends React.Component {
         </div>
         <div className={arr[1]}>
           <img
-            src="https://assets.entrepreneur.com/content/3x2/2000/20150327221922-success-winning-inspirational.jpeg"
+            src="https://s3-us-west-1.amazonaws.com/flack-app/img/winning.jpeg"
             alt=""
           />
           <p className="imgsub active">
@@ -103,10 +103,12 @@ class Splash extends React.Component {
         </div>
         <div className={arr[2]}>
           <img
-            src="https://www.alturalearning.com/wp-content/uploads/tips-for-better-communication.jpg"
+            src="https://s3-us-west-1.amazonaws.com/flack-app/img/communication.jpg"
             alt=""
           />
-          <p className="imgsub active">Learn to communicate better with Flack</p>
+          <p className="imgsub active">
+            Learn to communicate better with Flack
+          </p>
         </div>
       </>
     );
