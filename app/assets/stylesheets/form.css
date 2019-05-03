@@ -126,3 +126,14 @@
   color: #1264a3;
   text-decoration: none;
 }
+
+.errors {
+  list-style: 0;
+  padding-left: 0;
+}
+
+.error {
+  color: red;
+  list-style: none;
+  margin: 0;
+}

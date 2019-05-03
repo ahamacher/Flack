@@ -24,7 +24,6 @@ class SessionForm extends React.Component {
     } else if (this.props.match.path === "/signup") {
       formStyle = "signup";
     }
-
     this.state = { email, password: "", formStyle };
   }
 
@@ -108,6 +107,21 @@ class SessionForm extends React.Component {
     );
   }
 
+  renderErrors() {
+    if (!!this.props.errors.responseJSON) {
+      return (
+        <ul className="errors">
+          {this.props.errors.responseJSON.map((error, i) => (
+            <li key={`error-${i}`} className="error">
+              {error}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
+  }
+
   render() {
     const { email, password } = this.state;
     return (
@@ -116,9 +130,10 @@ class SessionForm extends React.Component {
         <div className="session-form">
           {this.formHead()}
           {this.formSubtext()}
+          {this.renderErrors()}
           <form onSubmit={this.handleSubmit}>
             <input
-              type="text"
+              type="email"
               onChange={this.handleChange("email")}
               value={email}
               placeholder="Email address"

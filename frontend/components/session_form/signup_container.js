@@ -3,17 +3,16 @@ import { signup } from '../../actions/session_actions';
 import SessionForm from './session_form';
 
 const mapStateToProps = (state, ownProps) => {
-  const noEmail = { email: '' };
-
-  
+  const noEmail = { email: "" };
+  const { errors } = state;
   let email;
-  if (!ownProps.location.state){
+  if (!ownProps.location.state) {
     email = noEmail;
   } else {
     email = ownProps.location.state.email;
   }
 
-  return { email };
+  return { errors: errors.session, email };
 };
 
 const mapDispatchToProps = dispatch => ({
