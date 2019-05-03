@@ -1,12 +1,326 @@
-// .active {
-//   animation-name: example;
-//   animation-duration: 12s;
-// }
 
-// @keyframes example {
-//   0% {opacity: 0;}
-//   25% { opacity: 1;}
-//   50%  { opacity: 1;}
-//   75%  { opacity: 0;}
-//   100% { opacity: 0;}
-// }
+@font-face {
+    font-family: 'Slack-Circular-bold';
+    src: font-url('slackcircular-bold-webfont.eot');
+    src: font-url('slackcircular-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('slackcircular-bold-webfont.woff2') format('woff2'),
+         font-url('slackcircular-bold-webfont.woff') format('woff'),
+         font-url('slackcircular-bold-webfont.ttf') format('truetype'),
+         font-url('slackcircular-bold-webfont.svg#jschijslackcircular-boldbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'circular-book';
+    src: font-url('circular-book-webfont.eot');
+    src: font-url('circular-book-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('circular-book-webfont.woff2') format('woff2'),
+         font-url('circular-book-webfont.woff') format('woff'),
+         font-url('circular-book-webfont.ttf') format('truetype'),
+         font-url('circular-book-webfont.svg#circular-book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+/* 
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+} */
+
+.splash-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;  
+  height: 70px;
+  margin-bottom: 60px;
+  position: absolute;
+}
+
+/* .splash-head .sticky {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;  
+  height: 70px;
+  margin-bottom: 60px;
+  position: fixed;
+  background: white;
+  z-index: 1000;
+} */
+
+.logo {
+  display: inline-block;
+  font-family: 'Slack-Circular-bold', Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  padding: 22px 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  margin-left: 44px;
+}
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links ul {
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-flow: row;
+}
+
+.navlink {
+  text-decoration: none;
+  color: #454545;
+  font-family: 'circular-book', "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.navlink a {
+  text-decoration: none;
+  color: #454545;
+}
+
+.head-right ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  margin-right: 44px;
+}
+
+.head-right li {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+
+.signup {
+  display: inline-block;
+  background-color: #611f69;
+  padding: 12px 16px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  font-weight: 700;
+  letter-spacing: .8px;
+  font-size: 14px;
+  text-decoration: none;
+  color: white;
+  margin: 0 16px;
+}
+
+.signup :hover {
+  background-color: #4A154B;
+}
+
+.main-content {
+  padding-top: 96px;
+  display: grid;
+  grid-template-columns: 10% 13% 33% 22px 30% 12%;
+  grid-template-rows: 110px 70px 125px auto 285px 30px;
+  margin: 0 auto;
+  max-width: 1080px;
+}
+
+.appinfo {
+  grid-column: 5/span 4;
+  grid-row: 3;
+  margin-top: 0;
+}
+
+.appinfo p {
+  font-family: 'circular-book', "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+}
+
+.main-content h1 {
+  font-family: 'Slack-Circular-bold',"Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  font-size: 64px;
+  max-width: 14em;
+  font-weight: 700;
+  grid-column: 2/span 4;
+  grid-row: 1/spawn 2;
+  z-index: 4;
+  margin: 0 0 0 80px;
+  padding-top: 0;
+}
+
+.login-signup {
+  grid-column: 5/span 4;
+  grid-row: 4;
+  z-index: 100;
+}
+
+.login-signup span input {
+  border: 1px solid #696969;
+  font-family: "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  line-height: 1.25em;
+  border-radius: 4px;
+  padding: 18px 16px;
+  font-weight: 400;
+}
+
+.button {
+  display: inline-block;
+  background-color: #611f69;
+  padding: 23px 40px 21px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: 'circular-book', "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  font-weight: 700;
+  letter-spacing: .8px;
+  font-size: 14px;
+  text-decoration: none;
+  color: white;
+  margin: 0 16px;
+}
+
+.button:hover {
+  background-color: #4A154B;
+}
+
+.signup:hover {
+  background-color: #4A154B;
+}
+
+.navlink:hover {
+  color: #1b1b1b;
+}
+
+.greeting-subtext {
+  display: inline-block;
+  margin-top: 16px;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #696969;
+  height: 1em;
+}
+
+.greeting-subtext a {
+  color: #1264a3;
+}
+
+.imgsub {
+  width: 100%;
+  font-family: 'circular-book', "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+}
+
+.picture-l img {
+  object-fit: cover;
+  width: 500px;
+  height: 500px;
+}
+
+.picture-l {
+  grid-column: 2/span 2;
+  grid-row: 3/span 3;
+  order: 1;
+  z-index: 4;
+}
+.picture-l .imgsub {
+  color: #696969;
+  font-family: sans-serif;
+  font-size: 14px;
+  margin: 6px 0 0 0;
+}
+
+.picture-m img {
+  object-fit: cover;
+
+  filter: grayscale(100%);
+  width: 300px;
+  height: 300px;
+}
+
+.picture-m {
+  grid-column-start: 5;
+  grid-row: 5/span 2;
+  order: 1;
+  z-index: 4;
+  opacity: 0.5;
+}
+
+.picture-s img {
+  object-fit: cover;
+
+  filter: grayscale(100%);
+  width: 250px;
+  height: 250px;
+}
+
+.picture-s {
+  grid-column: 1/span 2;
+  grid-row: 2/span 2;
+  order: 1;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.picture-s .imgsub {
+  display: none;
+}
+
+.picture-m .imgsub {
+  display: none;
+}
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 130px;
+  width: 100%;
+}
+
+.footer-logo {
+  margin-left: 44px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-around;
+  align-self: flex-end;
+  padding-right: 80px;
+
+}
+
+.footer-links ul {
+  display: inline-block;
+  list-style: none;
+  margin: 0 16px;
+  color: #696969;
+  font-family: sans-serif;
+  font-size: 14px;
+  width: 155px;
+}
+
+.footer-links ul li a:hover {
+  color: #1264a3;
+}
+
+.footer-links li{
+  padding: 10px 0;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 14px;
+}
+
+.footer-title {
+  font-size: 16px;
+  color: #454545;
+  font-weight: 600;
+}
+
+#demo {
+  margin-left: 0;
+}

@@ -27,6 +27,10 @@ class SessionForm extends React.Component {
     this.state = { email, password: "", formStyle };
   }
 
+  componentWillUnmount() {
+    this.props.clearSession();
+  }
+
   handleChange(field) {
     return e => {
       this.setState({ [field]: e.target.value });
@@ -42,7 +46,6 @@ class SessionForm extends React.Component {
   }
 
   demoUser() {
-    debugger;
     this.props
       .action({ email: "test@user.com", password: "password" })
       .then(() => this.props.history.push("/channel"));
@@ -89,11 +92,17 @@ class SessionForm extends React.Component {
                   email
                 }
               }}
+              className="sub-link"
             >
               Sign up for one
             </Link>
           </div>
-          <button type="button" onClick={this.demoUser}>Demo Flack</button>
+          <span>
+            or{" "}
+            <button type="button" onClick={this.demoUser} className="sub-link">
+              Demo Flack
+            </button>
+          </span>
         </div>
       );
     }
@@ -119,7 +128,7 @@ class SessionForm extends React.Component {
         </ul>
       );
     }
-    return null;
+    return <div className="errors" />;
   }
 
   render() {

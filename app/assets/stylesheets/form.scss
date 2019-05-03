@@ -50,6 +50,10 @@
   margin: 16px 17px 0 17px;
 }
 
+.header-sign-in:hover {
+  color: #1b1a1b;
+}
+
 .session-page {
   padding: 96px 32px 350px;
   background: #F8F8F8;
@@ -128,12 +132,19 @@
 }
 
 .errors {
+  height: 18px;
+  padding: 5px 0px;
   list-style: 0;
-  padding-left: 0;
+  line-height: 16px;
+  margin: 0;
 }
 
 .error {
   color: red;
   list-style: none;
   margin: 0;
+}
+
+.sub-link:hover {
+  text-decoration: underline;
 }

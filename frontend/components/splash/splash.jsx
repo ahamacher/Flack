@@ -14,18 +14,22 @@ class Splash extends React.Component {
   }
 
   componentDidMount() {
-    // this.loop();
-    // this.swap = setInterval(this.loop, 4000);
+    if (this.props.currentUser) {
+      this.props.history.push("/channel");
+      return;
+    }
+    this.loop();
+    this.swap = setInterval(this.loop.bind(this), 4000);
   }
 
   componentWillUnmount() {
-    // clearInterval(this.swap);
+    clearInterval(this.swap);
   }
 
   loop() {
-    const last = this.state.arr[2];
-    const middle = this.state.arr[1];
     const first = this.state.arr[0];
+    const middle = this.state.arr[1];
+    const last = this.state.arr[2];
 
     this.setState({ arr: [middle, last, first] });
   }
@@ -118,7 +122,7 @@ class Splash extends React.Component {
     return (
       <div>
         <header className="splash-head">
-          <Header />
+          <Header login={this.props.login} />
         </header>
         <main className="main-content">
           <h1>Imagine what you'll accomplish together</h1>

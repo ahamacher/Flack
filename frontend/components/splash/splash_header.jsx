@@ -1,9 +1,18 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = props => {
   const email = "";
+
+  const handleClick = () => {
+    props
+      .login({ email: "test@user.com", password: "password" })
+      .then(() => this.props.history.push("/channel"));
+  };
+
   return (
     <>
       <div className="nav-links">
@@ -51,13 +60,23 @@ const Header = () => {
               to={{
                 pathname: "/signup",
                 state: {
-                  email,
-                },
+                  email
+                }
               }}
               className="signup"
             >
               Get started
             </Link>
+          </li>
+          <li>
+            <button
+              type="button"
+              className="signup"
+              id="demo"
+              onClick={handleClick}
+            >
+              Demo User
+            </button>
           </li>
         </ul>
       </div>
