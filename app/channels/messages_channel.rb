@@ -5,13 +5,13 @@ class MessagesChannel < ApplicationCable::Channel
   end
 
   def speak(payload)
-    Message.create(
+    message = Message.create(
       body: payload['body'],
       author_id: payload['author_id'],
       channel_id: payload['channel_id'],
       parent_id: payload['parent_id']
     )
-      ActionCable.server.broadcast('MessagesChannel', 
+    MessagesChannel.broadcast_to('MessagesChannel', 
         { 
           message: message.body, 
           author_id: message.author_id,
