@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     namespace :api, defaults: {format: :json} do
       resources :users, only: [:create]
       resource :session, only: [:create, :destroy]
+      ## going to nest show later but want to get something working first
+      resources :messages, only: [:show, :create, :update, :destroy]
     end
 end
