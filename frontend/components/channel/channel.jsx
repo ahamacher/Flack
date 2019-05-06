@@ -18,7 +18,7 @@ class Channel extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
+    // debugger;
     const cable = ActionCable.createConsumer("http://localhost:3000/cable");
 
     cable.subscriptions.create(

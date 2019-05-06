@@ -5,3 +5,10 @@ json.set! "messages" do
     end
   end
 end
+json.set! "users" do
+  @messages.each do |message|
+    json.set! message.user.id do
+      json.extract! message.user, :id, :username
+    end
+  end
+end

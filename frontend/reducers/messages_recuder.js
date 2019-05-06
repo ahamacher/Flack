@@ -7,10 +7,9 @@ const messagesReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ALL_MESSAGES:
-      return action.messages.messages;
+      return action.messages;
     case RECEIVE_MESSAGE:
-      debugger;
-      return Object.assign({}, state, { [action.message.message.id]: action.message.message });
+      return Object.assign({}, state, { [action.message.id]: action.message });
     default:
       return state;
   }

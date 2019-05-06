@@ -1,10 +1,11 @@
 class Api::MessagesController < ApplicationController
   def index
-    @messages = Message.all
+    ## adding a .includes and a key will grab the though assosications as well in 1 query call
+    @messages = Message.all.includes(:user)
   end
   
   def show
-    @message = Message.find_by(params[:id])
+    @message = Message.find_by(params[:id]).includes(:user)
    end
 
    def create
@@ -14,16 +15,12 @@ class Api::MessagesController < ApplicationController
     if @message.save
       ## broadcasting the message to the "messagesChannel"
       ## can work on multiple dynamic channels later
-      user = User.find(@message.author_id)
       data = {
         message: {
           id: @message.id,
           body: @message.body,
           author_id: @message.author_id,
           channel_id: @message.channel_id
-        },
-        user: {
-          user: user
         }
       }
       ActionCable.server.broadcast("MessagesChannel", data)

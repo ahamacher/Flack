@@ -5,14 +5,18 @@ export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 export const RECEIVE_MESSAGE_ERRORS = "RECEIVE_MESSAGE_ERRORS";
 export const CLEAR_MESSAGE_ERRORS = "CLEAR_MESSAGE_ERRORS";
 
-export const receiveAllMessages = messages => ({
-  type: RECEIVE_ALL_MESSAGES,
-  messages
-});
+export const receiveAllMessages = ({ messages, users }) => {
+  return({
+    type: RECEIVE_ALL_MESSAGES,
+    messages,
+    users
+  });
+};
 
-export const receiveMessage = message => ({
+export const receiveMessage = ({ message, user }) => ({
   type: RECEIVE_MESSAGE,
-  message
+  message,
+  user
 });
 
 export const receiveMessageErrors = errors => ({
@@ -27,13 +31,14 @@ const clearMessageErrors = () => ({
 // taking it to thunky town
 
 export const fetchMessages = () => dispatch =>
-  MessageApiUtils.fetchMessages().then(messages =>
-    dispatch(receiveAllMessages(messages))
+  MessageApiUtils.fetchMessages().then(payload =>
+    dispatch(receiveAllMessages(payload))
   );
 
+// returning more than just a message, user information coming back as well
 export const fetchMessage = message => dispatch =>
   MessageApiUtils.fetchMessage(message).then(
-    message => dispatch(receiveMessage(message)),
+    payload => dispatch(receiveMessage(payload)),
     err => dispatch(receiveMessageErrors(err))
   );
 
