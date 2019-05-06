@@ -14,13 +14,20 @@ class Api::MessagesController < ApplicationController
     if @message.save
       ## broadcasting the message to the "messagesChannel"
       ## can work on multiple dynamic channels later
-      ActionCable.server.broadcast(
-        "MessagesChannel",
-        id: @message.id,
-        body: @message.body,
-        author_id: @message.author_id,
-        channel_id: @message.channel_id
-      )
+      user = User.find(@message.author_id)
+      data = {
+        message: {
+          id: @message.id,
+          body: @message.body,
+          author_id: @message.author_id,
+          channel_id: @message.channel_id
+        },
+        user: {
+          user: user
+        }
+      }
+      ActionCable.server.broadcast("MessagesChannel", data)
+      
       render 'api/messages/show'
     else
       render json: @message.errors.full_messages, status: 401

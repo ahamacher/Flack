@@ -5,19 +5,30 @@ class MessagesChannel < ApplicationCable::Channel
   end
 
   def speak(payload)
-    message = Message.create(
+    # message = 
+    Message.create(
       body: payload['body'],
       author_id: payload['author_id'],
       channel_id: payload['channel_id'],
       parent_id: payload['parent_id']
     )
-    MessagesChannel.broadcast_to('MessagesChannel', 
-        { 
-          message: message.body, 
-          author_id: message.author_id,
-          channel_id: message.channel_id,
-          parent_id: message.parent_id
-        })
+
+    # socket = { message: { 
+    #             body: message.body, 
+    #             author_id: message.author_id,
+    #             channel_id: message.channel_id,
+    #             parent_id: message.parent_id
+    #           },
+    #             type: 'message'
+    #           }
+
+    # MessagesChannel.broadcast_to('MessagesChannel', socket)
+  end
+
+  def load
+    messages = Message.all
+    socket = { messages: messages, type: 'messages'}
+    MessagesChannel.broadcast_to('MessagesChannel', socket)
   end
 
   def unsubscribed

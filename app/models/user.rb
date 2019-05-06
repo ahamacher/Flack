@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :ensure_username
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
@@ -21,6 +21,12 @@ class User < ApplicationRecord
     self.session_token = SecureRandom::urlsafe_base64
     self.save!
     return self.session_token
+  end
+
+  def ensure_username
+    at_location = self.email.index("@")
+    self.username = self.email[0...at_location]
+    self.save
   end
 
   def ensure_session_token
