@@ -14,11 +14,10 @@ class Channel extends React.Component {
       body: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.bottom = React.createRef();
+    this.handleEnter = this.handleEnter.bind(this);
   }
 
   componentDidMount() {
-    // debugger;
     const cable = ActionCable.createConsumer("http://localhost:3000/cable");
 
     cable.subscriptions.create(
@@ -35,39 +34,8 @@ class Channel extends React.Component {
         }
       }
     );
-
-    // App.cable.subscriptions.create(
-    //   { channel: "MessagesChannel" },
-    //   {
-    //     received: data => {
-    //       debugger
-    //       switch (data.type) {
-    //         case "message":
-    //           this.setState({
-    //             messages: this.state.messages.concat(data.message)
-    //           });
-    //           break;
-    //         case "messages":
-    //           this.setState({ messages: data.messages });
-    //           break;
-    //       }
-    //     },
-    //     speak: function(payload) {
-    //       return this.perform("speak", payload);
-    //     },
-    //     load: function() {
-    //       return this.perform("load");
-    //     }
-    //   }
-    // );
-    // setTimeout(() => App.cable.subscriptions.subscriptions[0].load(), 100);
-
     this.props.fetchMessages();
   }
-
-  // componentDidUpdate() {
-
-  // }
 
   update(form) {
     return e => this.setState({ [form]: e.currentTarget.value });
@@ -85,33 +53,100 @@ class Channel extends React.Component {
     this.setState({ body: "" });
   }
 
+  handleEnter(e) {
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      e.preventDefault();
+      this.handleSubmit(e);
+    }
+  }
+
   messageList() {
     return this.props.messages.map((message, idx) => {
-      return <MessageItemContainer key={message.id} message={message} />;
+      return (
+        <MessageItemContainer
+          key={message.id}
+          message={message}
+          className="message-container"
+        />
+      );
     });
   }
 
-  render() {
+  channelHead() {
+    const { users } = this.props;
+
+    const userCt = Object.keys(users).length;
+
+    return (
+      <header className="channel-header">
+        <div className="head-left">
+          <div className="channel-name">
+            <h2>#messages-channel</h2>
+          </div>
+          <div className="channel-subtitle-info">
+            <span><i className="far fa-star"></i> | <i className="far fa-user"></i> {userCt} | <i className="fas fa-thumbtack"></i> 0 | channel description</span>
+          </div>
+        </div>
+        <div className="head-right">
+          <span className="icons">
+            ✆ ℹ︎ ☼ <span className="head search" /> @ ☆ ? ⇣
+          </span>
+        </div>
+      </header>
+    );
+  }
+
+  channelSideBar() {
     const { currentUser, logout } = this.props;
     return (
-      <div className="channel-container">
+      <aside className="channel-list-container">
         <div className="temp-greeting">
           <h5>Welcome {currentUser.email}</h5>
           <button type="button" onClick={logout}>
             Logout
           </button>
         </div>
-        <div className="message-list">
-          <ul>{this.messageList()}</ul>
-          <form onSubmit={this.handleSubmit}>
-            <input
+
+        <div className="dropdown">{currentUser.userName}</div>
+        <div><h4>All threads</h4></div>
+      </aside>
+    );
+  }
+
+  messageForm() {
+    return (
+      <div className="message-form-container">
+        <div className="form-wrapper">
+          <span className="message-add">+</span>
+          <form onSubmit={this.handleSubmit} className="message-form">
+            <textarea
+              className="autoExpand"
               type="text"
               value={this.state.body}
               onChange={this.update("body")}
+              placeholder="Message #message-channel"
+              rows="1"
+              data-min-rows="1"
+              onKeyUp={e => this.handleEnter(e)}
             />
-            <input type="submit" value="send" />
           </form>
         </div>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div className="channel-container">
+        {this.channelSideBar()}
+        {this.channelHead()}
+        <main id="message-window">
+          <ul>
+            {this.messageList()}
+            <li id="bottom-li" />
+          </ul>
+          {this.messageForm()}
+        </main>
       </div>
     );
   }

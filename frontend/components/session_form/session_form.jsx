@@ -6,6 +6,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "./session_header";
+import Footer from "../footer";
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -158,6 +159,9 @@ class SessionForm extends React.Component {
           </form>
           {this.formFoot()}
         </div>
+        <footer className="app-footer">
+          <Footer />
+        </footer>
       </div>
     );
   }

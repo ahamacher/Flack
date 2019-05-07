@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "./splash_header";
+import Footer from "../footer";
 
 class Splash extends React.Component {
   constructor(props) {
@@ -130,6 +131,9 @@ class Splash extends React.Component {
           {this.appInfo()}
           {this.loginGetStarted()}
         </main>
+        <footer className="app-footer">
+          <Footer />
+        </footer>
       </div>
     );
   }

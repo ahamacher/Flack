@@ -18,6 +18,7 @@ const mapStateToProps = ({ entities, session }) => {
   }
   return {
     currentUser: entities.users[session.id],
+    users: entities.users,
     messages,
     channel_id: "MessagesChannel"
   };
