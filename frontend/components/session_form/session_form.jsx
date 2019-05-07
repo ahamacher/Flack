@@ -135,6 +135,7 @@ class SessionForm extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
+      <>
       <div className="session-page">
         <Header />
         <div className="session-form">
@@ -159,10 +160,11 @@ class SessionForm extends React.Component {
           </form>
           {this.formFoot()}
         </div>
+      </div>
         <footer className="app-footer">
           <Footer />
         </footer>
-      </div>
+        </>
     );
   }
 }

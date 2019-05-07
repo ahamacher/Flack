@@ -14,7 +14,7 @@ const MessageItem = ({ message, users }) => {
       <div className="post-content">
         <div className="post-user">
           {users[message.author_id].username}
-          <span> 7:50 PM</span>
+          <span> {message.timestamp}</span>
         </div>
         <div className="message-body">
           {message.body}

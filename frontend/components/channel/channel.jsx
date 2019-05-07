@@ -15,6 +15,7 @@ class Channel extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
+    this.bottom = React.createRef();
   }
 
   componentDidMount() {
@@ -35,6 +36,11 @@ class Channel extends React.Component {
       }
     );
     this.props.fetchMessages();
+    this.bottom.current.scrollIntoView();
+  }
+
+  componentDidUpdate() {
+    this.bottom.current.scrollIntoView();
   }
 
   update(form) {
@@ -84,12 +90,17 @@ class Channel extends React.Component {
             <h2>#messages-channel</h2>
           </div>
           <div className="channel-subtitle-info">
-            <span><i className="far fa-star"></i> | <i className="far fa-user"></i> {userCt} | <i className="fas fa-thumbtack"></i> 0 | channel description</span>
+            <i className="far fa-star" /> | <i className="far fa-user" />{" "}
+            {userCt} | <i className="fas fa-thumbtack" /> 0 | channel
+            description
           </div>
         </div>
         <div className="head-right">
           <span className="icons">
-            ✆ ℹ︎ ☼ <span className="head search" /> @ ☆ ? ⇣
+            <i id="phone" className="fas fa-phone" />{" "}
+            <i className="fas fa-info" /> <i className="fas fa-cog" />{" "}
+            <div className="head-search" /> <i className="fas fa-at" />{" "}
+            <i className="far fa-star" /> <i className="fas fa-ellipsis-v" />
           </span>
         </div>
       </header>
@@ -108,7 +119,9 @@ class Channel extends React.Component {
         </div>
 
         <div className="dropdown">{currentUser.userName}</div>
-        <div><h4>All threads</h4></div>
+        <div>
+          <h4>All threads</h4>
+        </div>
       </aside>
     );
   }
@@ -127,6 +140,7 @@ class Channel extends React.Component {
               placeholder="Message #message-channel"
               rows="1"
               data-min-rows="1"
+              autoFocus
               onKeyUp={e => this.handleEnter(e)}
             />
           </form>
@@ -143,7 +157,7 @@ class Channel extends React.Component {
         <main id="message-window">
           <ul>
             {this.messageList()}
-            <li id="bottom-li" />
+            <div ref={this.bottom} />
           </ul>
           {this.messageForm()}
         </main>
