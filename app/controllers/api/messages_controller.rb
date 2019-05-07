@@ -15,12 +15,15 @@ class Api::MessagesController < ApplicationController
     if @message.save
       ## broadcasting the message to the "messagesChannel"
       ## can work on multiple dynamic channels later
+
       data = {
         message: {
           id: @message.id,
           body: @message.body,
           author_id: @message.author_id,
-          channel_id: @message.channel_id
+          channel_id: @message.channel_id,
+          timestamp: @message.created_at.localtime.strftime("%l:%M %p"),
+          parent_id: @message.parent_id
         }
       }
       ActionCable.server.broadcast("MessagesChannel", data)
@@ -33,7 +36,7 @@ class Api::MessagesController < ApplicationController
    end
 
    def update
-    ## later
+    
    end
 
    def destroy

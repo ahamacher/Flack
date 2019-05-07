@@ -10,12 +10,14 @@ class Channel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [],
-      body: ""
+      body: "",
+      active: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
     this.bottom = React.createRef();
+    this.handleClick = this.handleClick.bind(this);
+    this.toggleClass = this.toggleClass.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +45,17 @@ class Channel extends React.Component {
     this.bottom.current.scrollIntoView();
   }
 
+  componentWillUnmount() {
+    document.removeEventListener("mouseup", this.handleClick, false);
+  }
+
+  handleClick(e) {
+    if (this.pop.contains(e.target)) {
+      return;
+    }
+    this.toggleClass();
+  }
+
   update(form) {
     return e => this.setState({ [form]: e.currentTarget.value });
   }
@@ -55,14 +68,18 @@ class Channel extends React.Component {
     const parent_id = 0;
 
     const message = { body, author_id, parent_id, channel_id: 1 };
-    createMessage(message);
-    this.setState({ body: "" });
+    if (body.length > 0) {
+      createMessage(message);
+      this.setState({ body: "" });
+    }
   }
 
   handleEnter(e) {
     if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault();
-      this.handleSubmit(e);
+      if (this.state.body !== 0) {
+        this.handleSubmit(e);
+      }
     }
   }
 
@@ -76,6 +93,16 @@ class Channel extends React.Component {
         />
       );
     });
+  }
+
+  toggleClass() {
+    const currentState = this.state.active;
+    if (currentState) {
+      document.removeEventListener("mouseup", this.handleClick, false);
+    } else {
+      document.addEventListener("mouseup", this.handleClick, false);
+    }
+    this.setState({ active: !currentState });
   }
 
   channelHead() {
@@ -97,10 +124,48 @@ class Channel extends React.Component {
         </div>
         <div className="head-right">
           <span className="icons">
-            <i id="phone" className="fas fa-phone" />{" "}
-            <i className="fas fa-info" /> <i className="fas fa-cog" />{" "}
-            <div className="head-search" /> <i className="fas fa-at" />{" "}
-            <i className="far fa-star" /> <i className="fas fa-ellipsis-v" />
+            <div className="icon">
+              <i id="phone" className="fas fa-phone" />
+              <span className="tooltip-text tooltip">Calls disabled</span>
+            </div>{" "}
+            <div className="icon">
+              <i className="fas fa-info" />
+              <span className="tooltip-text tooltip">Show Channel Details</span>
+            </div>{" "}
+            <div className="icon" onClick={this.toggleClass}>
+              <i className="fas fa-cog" />
+              <div
+                className={this.state.active ? "active-cog" : "hidden"}
+                ref={node => this.pop = node}
+              >
+                <ul>
+                  <li className="menu-link">View channel Details</li>
+                  <li className="menu-link">Additional options...</li>
+                  <li className="divider" />
+                  <li className="menu-link">leave #messages-channel</li>
+                </ul>
+              </div>
+              <span
+                className={
+                  this.state.active ? "hidden" : "tooltip-text tooltip"
+                }
+              >
+                Channel Settings
+              </span>
+            </div>{" "}
+            <div className="head-search" />{" "}
+            <div className="icon">
+              <i className="fas fa-at" />
+              <span className="tooltip-text tooltip">Show Activity</span>
+            </div>{" "}
+            <div className="icon">
+              <i className="far fa-star" />
+              <span className="star-tooltip tooltip">Show Starred Items</span>
+            </div>{" "}
+            <div className="icon">
+              <i className="fas fa-ellipsis-v" />
+              <span className="more-tooltip tooltip">More Items</span>
+            </div>
           </span>
         </div>
       </header>
@@ -141,7 +206,7 @@ class Channel extends React.Component {
               rows="1"
               data-min-rows="1"
               autoFocus
-              onKeyUp={e => this.handleEnter(e)}
+              onKeyDown={e => this.handleEnter(e)}
             />
           </form>
         </div>

@@ -1,0 +1,230 @@
+.channel-header {
+    box-sizing: border-box;
+    background: white;
+    margin-left: 220px;
+    display: flex;
+    justify-content: space-between;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 1px solid #ddd;
+    height: 60px;
+
+  .channel-header h2 {
+    padding: 11px 0px 9px 0px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .channel-subtitle-info {
+    font-size: 13px;
+    color: rgb(134, 134, 134);
+    padding-bottom: 8px;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(134, 134, 134);
+    overflow: visible
+  }
+
+  .icons i {
+    padding: 0 8px;
+    font-size: 18px;
+  }
+
+  .head-search {
+    height: 28px;
+    line-height: 16px;
+    padding: 2px 0px;
+    margin: 0 5px;
+    width: 170px;
+    border: 1px solid rgb(134, 134, 134);
+    border-radius: 5px;
+  }
+
+  .head-left {
+    margin-left: 20px;
+    align-self: center;
+  }
+
+  .head-right {
+    margin-right: 20px;
+    align-self: center;
+    overflow: visible
+  }
+
+  // Header icons + tooltips
+
+  .tooltip {
+    font-size: 13px;
+  }
+
+    #phone {
+    font-size: 16px;
+    color: #ddd;
+  }
+
+  .icon {
+    display: inline-block;
+    position: relative;
+  }
+
+  .icon .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: #1d1c1d;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 100;
+    top: 150%;
+    left: 50%;
+    margin-left: -60px;
+  }
+
+  .icon .tooltip-text::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+  z-index: 100;
+  transform: rotate(180deg);
+  }
+
+  .icon:hover .tooltip-text {
+    visibility: visible;
+  }
+
+  // special tooltip boxes
+
+  .icon .star-tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: #1d1c1d;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 100;
+    top: 150%;
+    left: 50%;
+    margin-left: -88px;
+  }
+
+  .icon .star-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 75%;
+  margin-left: -7.5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+  z-index: 100;
+  transform: rotate(180deg);
+  }
+
+  .icon:hover .star-tooltip {
+    visibility: visible;
+  }
+
+// more icon
+
+
+  .icon .more-tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: #1d1c1d;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 100;
+    top: 150%;
+    left: 50%;
+    margin-left: -105px;
+  }
+
+  .icon .more-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: 40px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+  z-index: 100;
+  transform: rotate(180deg);
+  }
+
+  .icon:hover .more-tooltip {
+    visibility: visible;
+  }
+
+  // settings modal
+  .active-cog {
+    position: absolute;
+    visibility: visible;
+    background-color: white;
+    border: 1px solid rgb(134, 134, 134);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 4px 12px 0 rgba(0,0,0,.12);
+    z-index: 1025;
+    color: #1d1c1d;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 270px;
+    max-height: calc(100vh - 99px);
+    left: 0px;
+    top: 26px;
+  }
+
+  .active-cog ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    list-style: none;
+    margin: 12px 0;
+  }
+
+  .menu-link {
+    font-size: 15px;
+    padding-left: 24px;
+    line-height: 28px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .divider {
+    margin: 8px 0 7px;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+    width: 100%;
+  }
+
+  .menu-link:hover {
+    background: #1264a3;
+    color: #fff;
+  }
+
+  .hidden {
+    position: absolute;
+    visibility: hidden;
+  }
+
+
+}

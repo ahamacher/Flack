@@ -1,5 +1,5 @@
 .channel-container {
-  overflow: hidden;
+  overflow: visible;
 
   .channel-list-container {
     position: absolute;
@@ -10,70 +10,7 @@
     height: 100%;
     color: white;
   }
-  .channel-header {
-    box-sizing: border-box;
-    background: white;
-    margin-left: 220px;
-    display: flex;
-    justify-content: space-between;
-    font-family: Arial, Helvetica, sans-serif;
-    border-bottom: 1px solid #ddd;
-    height: 60px;
-  }
-
-  .channel-header h2 {
-    padding: 11px 0px 9px 0px;
-    margin: 0;
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  .channel-subtitle-info {
-    font-size: 13px;
-    color: rgb(134, 134, 134);
-    padding-bottom: 8px;
-  }
-
-  .icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgb(134, 134, 134);
-  }
-
-  #phone {
-    font-size: 16px;
-    color: #ddd;
-  }
-
-  .icons i {
-    padding: 0 8px;
-    font-size: 18px;
-  }
-
-
-
-  .head-search {
-    height: 28px;
-    line-height: 16px;
-    padding: 2px 0px;
-    margin: 0 5px;
-    width: 170px;
-    border: 1px solid rgb(134, 134, 134);
-    border-radius: 5px;
-  }
-
-  .head-left {
-    margin-left: 20px;
-    align-self: center;
-  }
-
-  .head-right {
-    margin-right: 20px;
-    align-self: center;
-  }
-
-
+  
   .message-container {
     width: inherit;
   }
@@ -92,6 +29,7 @@
     right: 0px;
     overflow-y: scroll;
     overflow-x: hidden;
+    z-index: 5;
   }
 
   #message-window ul {
@@ -166,15 +104,20 @@
     // padding: 6px 9px 6px 9px;
     font-size: 32px;
     line-height: 32px;
-    max-height: 44px;
+    min-height: 44px;
     font-family: sans-serif;
     width: 44px;
     align-self: center;
     font-weight: 400;
     color: rgb(134, 134, 134);
     text-align: center;
-    padding-bottom: 6px;
+    // padding-bottom: 6px;
     border-right: 2px solid rgba(134, 134, 134, .7);
+  }
+
+  .message-add:hover {
+    background-color: #66CC99;
+    color: white;
   }
 
 
@@ -208,6 +151,7 @@
   #msg-send {
     display: none;
   }
+
 
 }
 
