@@ -202,13 +202,6 @@
     margin: 12px 0;
   }
 
-  .menu-link {
-    font-size: 15px;
-    padding-left: 24px;
-    line-height: 28px;
-    width: 100%;
-    margin: 0;
-  }
 
   .divider {
     margin: 8px 0 7px;
@@ -227,4 +220,17 @@
   }
 
 
+}
+
+.menu-link {
+  font-size: 15px;
+  padding-left: 24px;
+  line-height: 28px;
+  width: 100%;
+  margin: 0;
+}
+
+.menu-link:hover {
+  background: #1264a3;
+  color: #fff;
 }

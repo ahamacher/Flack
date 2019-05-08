@@ -38,7 +38,7 @@ class Api::MessagesController < ApplicationController
 
    def update
     @message = current_user.messages.find_by(id: params[:id])
-    if @message.update_attributes(body: params[:body])
+    if @message.update_attributes(body: params[:message][:body])
       data = {
         type: "message",
         message: {

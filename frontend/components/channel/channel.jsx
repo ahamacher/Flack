@@ -229,7 +229,7 @@ class Channel extends React.Component {
         {this.channelSideBar()}
         {this.channelHead()}
         <main id="message-window">
-          <ul>
+          <ul className="message-list">
             {this.messageList()}
             <div ref={this.bottom} />
           </ul>
