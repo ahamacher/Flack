@@ -21,8 +21,14 @@ class Channel extends React.Component {
   }
 
   componentDidMount() {
-    const cable = ActionCable.createConsumer("http://localhost:3000/cable");
-
+    let cable;
+    if (process.env.NODE_ENV !== "production") {
+      cable = ActionCable.createConsumer("http://localhost:3000/cable");
+    } else {
+      cable = ActionCable.createConsumer(
+        "wss://flack-apps.herokuapp.com/cable"
+      );
+    }
     cable.subscriptions.create(
       { channel: "MessagesChannel" },
       {
