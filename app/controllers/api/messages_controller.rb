@@ -37,6 +37,7 @@ class Api::MessagesController < ApplicationController
    end
 
    def update
+    ## need to add multiple channels here
     @message = current_user.messages.find_by(id: params[:id])
     if @message.update_attributes(body: params[:message][:body])
       data = {
