@@ -24,7 +24,8 @@ class Api::MessagesController < ApplicationController
           author_id: @message.author_id,
           channel_id: @message.channel_id,
           timestamp: @message.created_at.localtime.strftime("%l:%M %p"),
-          parent_id: @message.parent_id
+          parent_id: @message.parent_id,
+          username: @message.user.username
         }
       }
       ActionCable.server.broadcast("MessagesChannel", data)

@@ -45,10 +45,15 @@
     font-size: 15px;
     width: 100%;
     margin: 0;
+    position: relative;
   }
 
   .post-container:hover {
-    background: rgb(238, 238, 238);
+    background: rgb(243, 243, 243);
+  }
+
+  .post-container:hover .message-modal {
+    visibility: visible;
   }
 
   .post-user {
