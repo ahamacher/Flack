@@ -2,14 +2,11 @@ import { connect } from "react-redux";
 import { removeMessage, updateMessage } from "../../actions/message_actions";
 import MessageItem from "./message_item";
 
-const mapStateToProps = (state, ownProps) => {
-  // debugger;
-  return({
-    message: ownProps.message,
-    users: state.entities.users,
-    currentUser: state.session.id
-  })
-};
+const mapStateToProps = (state, ownProps) => ({
+  message: ownProps.message,
+  users: state.entities.users,
+  currentUser: state.session.id
+});
 
 const mapDispatchToProps = dispatch => ({
   updateMessage: message => dispatch(updateMessage(message)),
