@@ -25,7 +25,7 @@
     top: 61px;
     right: 0px;
     left: 220px;;
-    bottom: 0px;
+    bottom: 70px;
     right: 0px;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -34,6 +34,21 @@
 
   .message-list {
     margin-right: 36px;
+    height: 92%;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .list-padding {
+    list-style: none;
+    height: 300px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin: 48px 32px 16px 16px;
+    font-family: sans-serif;
+    font-size: 18px;
   }
 
   .post-container {
@@ -70,12 +85,13 @@
   }
 
   .message-form-container {
-    position: sticky;
+    position: fixed;
     // display: grid;
     // grid-template-rows: minmax(40px, auto) 20px;
     // grid-template-columns: 20px, minmax(425, auto), 20px;
     bottom:0px;
-    width: 100%;
+    left: 220px;
+    right: 0px;
     background-color: white;
     overflow: hidden;
   }

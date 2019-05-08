@@ -96,11 +96,16 @@ body {
   display: flex;
   align-items: center;
   margin-right: 44px;
+  min-width: 455px;
 }
 
 .head-right li {
   margin-left: 16px;
   margin-right: 16px;
+}
+
+.head-right {
+  margin: auto 0;
 }
 
 

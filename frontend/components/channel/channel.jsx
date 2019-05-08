@@ -234,13 +234,17 @@ class Channel extends React.Component {
       <div className="channel-container">
         {this.channelSideBar()}
         {this.channelHead()}
-        <main id="message-window">
+        <div id="message-window">
           <ul className="message-list">
+            <li className="list-padding">
+              <h4>This is the very beginning of the{" "}
+                <span className="bold"># messages-channel</span> channel</h4>
+            </li>
             {this.messageList()}
             <div ref={this.bottom} />
           </ul>
           {this.messageForm()}
-        </main>
+        </div>
       </div>
     );
   }
