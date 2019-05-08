@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { removeMessage, updateMessage } from "../../actions/message_actions";
 import MessageItem from "./message_item";
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,7 +10,10 @@ const mapStateToProps = (state, ownProps) => {
   })
 };
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = dispatch => ({
+  updateMessage: message => dispatch(updateMessage(message)),
+  removeMessage: messageId => dispatch(removeMessage(messageId))
+});
 
 export default connect(
   mapStateToProps,

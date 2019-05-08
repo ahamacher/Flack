@@ -5,7 +5,7 @@ class Api::MessagesController < ApplicationController
   end
   
   def show
-    @message = Message.find_by(params[:id]).includes(:user)
+    @message = Message.where(id: params[:id]).includes(:user)
    end
 
    def create
@@ -17,6 +17,7 @@ class Api::MessagesController < ApplicationController
       ## can work on multiple dynamic channels later
 
       data = {
+        type: "message",
         message: {
           id: @message.id,
           body: @message.body,
@@ -32,15 +33,39 @@ class Api::MessagesController < ApplicationController
     else
       render json: @message.errors.full_messages, status: 401
     end
-
    end
 
    def update
-    
+    @message = current_user.messages.find_by(id: params[:id])
+    if @message.update_attributes(body: params[:body])
+      data = {
+        type: "message",
+        message: {
+          id: @message.id,
+          body: @message.body,
+          author_id: @message.author_id,
+          channel_id: @message.channel_id,
+          timestamp: @message.created_at.localtime.strftime("%l:%M %p"),
+          parent_id: @message.parent_id
+        }
+      }
+      ActionCable.server.broadcast("MessagesChannel", data)
+      
+      render 'api/messages/show'
+    else
+      render json: @message.errors.full_messages, status: 401
+    end
    end
 
    def destroy
-    ## later
+    @message = current_user.messages.find_by(id: params[:id])
+    if @message.delete
+      data = {delete: @message.id, type: "delete"}
+      ActionCable.server.broadcast("MessagesChannel", data)
+      render json: @message.id
+    else
+      render json: ["message not found"], status: 404
+    end
    end
 
    private

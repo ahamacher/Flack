@@ -10,7 +10,7 @@
     height: 100%;
     color: white;
   }
-  
+
   .message-container {
     width: inherit;
   }
@@ -160,4 +160,16 @@
   height: 36px;
   margin-right: 6px;
   border-radius: 4px;
+}
+
+.hover-blue:hover {
+  color: #1264a3;
+}
+
+.hover-red:hover {
+  color: #FF3366;
+}
+
+.hover-yellow:hover {
+  color: #FFCC66;
 }

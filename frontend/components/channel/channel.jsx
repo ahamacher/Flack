@@ -27,10 +27,19 @@ class Channel extends React.Component {
       { channel: "MessagesChannel" },
       {
         connected: () => {
+          // remove this for production, displays a sucessful connection
           console.log("connected to channel!!!");
         },
-        received: message => {
-          this.props.receiveMessage(message);
+        received: data => {
+          switch (data.type) {
+            case "message":
+              debugger;
+              this.props.receiveMessage({ message: data.message });
+              break;
+            case "delete":
+              this.props.deleteMessage(data.delete);
+              break;
+          }
         },
         speak: function(payload) {
           this.perform("speak", payload);
@@ -128,15 +137,15 @@ class Channel extends React.Component {
               <i id="phone" className="fas fa-phone" />
               <span className="tooltip-text tooltip">Calls disabled</span>
             </div>{" "}
-            <div className="icon">
+            <div className="icon hover-blue">
               <i className="fas fa-info" />
               <span className="tooltip-text tooltip">Show Channel Details</span>
             </div>{" "}
-            <div className="icon" onClick={this.toggleClass}>
+            <div className="icon hover-blue" onClick={this.toggleClass}>
               <i className="fas fa-cog" />
               <div
                 className={this.state.active ? "active-cog" : "hidden"}
-                ref={node => this.pop = node}
+                ref={node => (this.pop = node)}
               >
                 <ul>
                   <li className="menu-link">View channel Details</li>
@@ -154,15 +163,15 @@ class Channel extends React.Component {
               </span>
             </div>{" "}
             <div className="head-search" />{" "}
-            <div className="icon">
+            <div className="icon hover-red">
               <i className="fas fa-at" />
               <span className="tooltip-text tooltip">Show Activity</span>
             </div>{" "}
-            <div className="icon">
+            <div className="icon hover-yellow">
               <i className="far fa-star" />
               <span className="star-tooltip tooltip">Show Starred Items</span>
             </div>{" "}
-            <div className="icon">
+            <div className="icon hover-blue">
               <i className="fas fa-ellipsis-v" />
               <span className="more-tooltip tooltip">More Items</span>
             </div>

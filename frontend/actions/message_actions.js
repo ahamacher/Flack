@@ -4,6 +4,7 @@ export const RECEIVE_ALL_MESSAGES = "RECEIVE_ALL_MESSAGES";
 export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 export const RECEIVE_MESSAGE_ERRORS = "RECEIVE_MESSAGE_ERRORS";
 export const CLEAR_MESSAGE_ERRORS = "CLEAR_MESSAGE_ERRORS";
+export const DELETE_MESSAGE = "DELETE_MESSAGE";
 
 export const receiveAllMessages = ({ messages, users }) => {
   return({
@@ -12,6 +13,11 @@ export const receiveAllMessages = ({ messages, users }) => {
     users
   });
 };
+
+export const deleteMessage = messageId => ({
+  type: DELETE_MESSAGE,
+  messageId
+});
 
 export const receiveMessage = ({ message, user }) => ({
   type: RECEIVE_MESSAGE,
@@ -46,6 +52,17 @@ export const createMessage = message => dispatch =>
   MessageApiUtils.createMessage(message).then(
     message => dispatch(receiveMessage(message)),
     err => dispatch(receiveMessageErrors(err))
+  );
+
+export const updateMessage = message => dispatch =>
+  MessageApiUtils.updateMessage(message).then(
+    message => dispatch(receiveMessage(message)),
+    err => dispatch(receiveMessageErrors(err))
+  );
+
+export const removeMessage = messageId => dispatch =>
+  MessageApiUtils.deleteMessage(messageId).then(messageId =>
+    dispatch(deleteMessage(messageId))
   );
 
 export const clearMessage = () => dispatch => dispatch(clearMessageErrors());

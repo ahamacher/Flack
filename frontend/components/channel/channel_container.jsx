@@ -7,7 +7,8 @@ import {
   createMessage,
   clearMessage,
   receiveMessage,
-  receiveAllMessages
+  receiveAllMessages,
+  deleteMessage
 } from "../../actions/message_actions";
 
 const mapStateToProps = ({ entities, session }) => {
@@ -30,7 +31,8 @@ const mapDispatchToProps = dispatch => ({
   fetchMessage: message => dispatch(fetchMessage(message)),
   createMessage: message => dispatch(createMessage(message)),
   clearMessage: () => dispatch(clearMessage()),
-  receiveMessage: message => dispatch(receiveMessage(message))
+  receiveMessage: message => dispatch(receiveMessage(message)),
+  deleteMessage: message => dispatch(deleteMessage(message))
 });
 
 export default connect(
