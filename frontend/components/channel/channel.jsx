@@ -39,7 +39,6 @@ class Channel extends React.Component {
         received: data => {
           switch (data.type) {
             case "message":
-              debugger;
               this.props.receiveMessage({ message: data.message });
               break;
             case "delete":

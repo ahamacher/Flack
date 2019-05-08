@@ -8,7 +8,6 @@ const Header = props => {
   const email = "";
 
   const handleClick = () => {
-    debugger;
     props.login({ email: "test@user.com", password: "password" });
   };
 
