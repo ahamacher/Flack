@@ -6,7 +6,8 @@ const mapStateToProps = (state, ownProps) => {
   // debugger;
   return({
     message: ownProps.message,
-    users: state.entities.users
+    users: state.entities.users,
+    currentUser: state.session.id
   })
 };
 

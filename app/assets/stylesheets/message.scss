@@ -9,7 +9,11 @@
   border-radius: 6px;
   z-index: 25;
   background: white;
- 
+  cursor: pointer;
+}
+
+.message-modal button {
+  cursor: pointer;
 }
 
 .message-modal:hover {
@@ -34,6 +38,12 @@
   position: absolute;
 }
 
+.message-list .hidden {
+  visibility: hidden;
+  position: absolute;
+  display: none;
+}
+
 .modal-menu {
   visibility: visible;
   position: absolute;
@@ -53,6 +63,7 @@
   max-height: calc(100vh - 99px);
   right: 40px;
   top: 0px;
+  cursor: pointer;
 }
 
 .modal-menu ul {
@@ -73,4 +84,72 @@
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.00)
+}
+
+li.edit-container {
+    padding: 6px 24px;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    background-color: #fcf4da;
+    width: 100%;
+}
+
+.edit-form {
+    align-self: center;
+    width: 100%;
+    max-height: 100%;
+    margin: 0;
+    position: relative;
+    padding: 6px 30px 6px 9px;
+    font-size: 16px;
+    line-height: 42px;
+    font-family: sans-serif;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    background-color: white;
+}
+
+.edit-form-wrapper {
+    border: 2px solid rgba(134, 134, 134, 0.7);
+    border-radius: 6px;
+    max-height: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 680px;
+    overflow: hidden;
+}
+
+.edit-form textarea {
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 400px;
+    width: 95%;
+    resize: none;
+    line-height: 16px;
+    margin-left: 20px;
+}
+
+.edit-form-button {
+  font-size: 13px;
+  font-family: sans-serif;
+  height: 28px;
+  min-width: 56px;
+  padding: 0 12px 1px;
+  background: #fff;
+  border: 1px solid rgba(29,28,29,.3);
+  border-radius: 4px;
+  background-clip: padding-box;
+  color: #1d1c1d;
+  font-weight: 700;
+  margin-right: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.save {
+  background-color: #007A5A;
+  color: white;
 }

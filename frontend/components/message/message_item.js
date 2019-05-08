@@ -23,7 +23,9 @@ class MessageItem extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     const formState = this.state.activeForm;
     const { updateMessage } = this.props;
     const { body } = this.state;
@@ -34,7 +36,7 @@ class MessageItem extends React.Component {
       body,
       parent_id: message.parent_id,
       author_id: message.author_id
-    }
+    };
 
     updateMessage(newMessage);
     if (formState) {
@@ -83,10 +85,14 @@ class MessageItem extends React.Component {
   editToggle() {
     const currentState = this.state.activeForm;
     const modalState = this.state.activeMenu;
+    const { message, currentUser } = this.props;
 
-    this.setState({ activeForm: !currentState });
-    if (modalState) {
-      this.menuToggle();
+    if (message.author_id === currentUser) {
+      this.setState({ activeForm: !currentState });
+      this.setState({ body: message.body });
+      if (modalState) {
+        this.menuToggle();
+      }
     }
   }
 
@@ -164,37 +170,44 @@ class MessageItem extends React.Component {
   editMessageForm() {
     const { activeForm } = this.state;
     return (
-      <div className={activeForm ? "edit-form-container" : "hidden"}>
+      <>
         {this.userImage()}
-        <div>
-          <form onSubmit={this.handleSubmit} className="edit-form">
-            <textarea
-              className="autoExpand"
-              type="text"
-              value={this.state.body}
-              onChange={this.update("body")}
-              placeholder="Message #message-channel"
-              rows="1"
-              data-min-rows="1"
-              autoFocus
-              onKeyDown={e => this.handleEnter(e)}
-            />
-          </form>
-          <div className="edit-buttons">
-            <button onClick={() => this.editToggle}>Cancel</button>
-            <button type="submit">Save Changes</button>
+        <div className={activeForm ? "edit-form-container" : "hidden"}>
+          <div className="edit-form-wrapper">
+            <form onSubmit={this.handleSubmit} className="edit-form">
+              <textarea
+                className="autoExpand"
+                type="text"
+                value={this.state.body}
+                onChange={this.update("body")}
+                placeholder="Message #message-channel"
+                rows="1"
+                data-min-rows="1"
+                autoFocus
+                onKeyDown={e => this.handleEnter(e)}
+              />
+            </form>
           </div>
+            <div className="edit-buttons">
+              <button type="button" onClick={() => this.editToggle()} className="edit-form-button">Cancel</button>
+              <button type="submit" className="edit-form-button save" onClick={() => this.handleSubmit()}>Save Changes</button>
+            </div>
         </div>
-      </div>
+      </>
     );
   }
 
   render() {
+    const { activeForm } = this.state;
     return (
-      <li className="post-container">
-        {this.messageDisplay()}
-        {this.editMessageForm()}
-      </li>
+      <>
+        <li className={activeForm ? "hidden" : "post-container"}>
+          {this.messageDisplay()}
+        </li>
+        <li className={activeForm ? "edit-container" : "hidden"}>
+          {this.editMessageForm()}
+        </li>
+      </>
     );
   }
 }
