@@ -8,9 +8,8 @@ const Header = props => {
   const email = "";
 
   const handleClick = () => {
-    props
-      .login({ email: "test@user.com", password: "password" })
-      .then(() => this.props.history.push("/channel"));
+    debugger;
+    props.login({ email: "test@user.com", password: "password" });
   };
 
   return (
