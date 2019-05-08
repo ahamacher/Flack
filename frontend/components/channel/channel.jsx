@@ -26,7 +26,7 @@ class Channel extends React.Component {
       cable = ActionCable.createConsumer("http://localhost:3000/cable");
     } else {
       cable = ActionCable.createConsumer(
-        "wss://flack-apps.herokuapp.com/cable"
+        "http://flack-apps.herokuapp.com/cable"
       );
     }
     cable.subscriptions.create(
