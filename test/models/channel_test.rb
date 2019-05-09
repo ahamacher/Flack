@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: channels
+#
+#  id         :bigint           not null, primary key
+#  name       :string           not null
+#  author_id  :integer          not null
+#  is_dm      :boolean          default(FALSE), not null
+#  default    :boolean          default(FALSE), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'test_helper'
 
 class ChannelTest < ActiveSupport::TestCase

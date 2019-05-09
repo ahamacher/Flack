@@ -21,6 +21,19 @@ class Channel extends React.Component {
   }
 
   componentDidMount() {
+    this.props.fetchMessages();
+    this.bottom.current.scrollIntoView();
+  }
+
+  componentDidUpdate() {
+    this.bottom.current.scrollIntoView();
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mouseup", this.handleClick, false);
+  }
+
+  channelConnection(channelId) {
     let cable;
     if (process.env.NODE_ENV !== "production") {
       cable = ActionCable.createConsumer("http://localhost:3000/cable");
@@ -30,7 +43,7 @@ class Channel extends React.Component {
       );
     }
     cable.subscriptions.create(
-      { channel: "MessagesChannel" },
+      { channel: "MessagesChannel", room: channelId },
       {
         connected: () => {
           // remove this for production, displays a sucessful connection
@@ -46,21 +59,11 @@ class Channel extends React.Component {
               break;
           }
         },
-        speak: function(payload) {
+        speak: function (payload) {
           this.perform("speak", payload);
         }
       }
     );
-    this.props.fetchMessages();
-    this.bottom.current.scrollIntoView();
-  }
-
-  componentDidUpdate() {
-    this.bottom.current.scrollIntoView();
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("mouseup", this.handleClick, false);
   }
 
   handleClick(e) {
@@ -191,7 +194,7 @@ class Channel extends React.Component {
     return (
       <aside className="channel-list-container">
         <div className="temp-greeting">
-          <h5>Welcome {currentUser.email}</h5>
+          <h5>{currentUser.userName}</h5>
           <button type="button" onClick={logout}>
             Logout
           </button>
@@ -200,6 +203,13 @@ class Channel extends React.Component {
         <div className="dropdown">{currentUser.userName}</div>
         <div>
           <h4>All threads</h4>
+        </div>
+
+        <div className="channel-list">
+          Channels <button type="button" className="side-bar-add"> + </button>
+          <ul>
+            
+          </ul>
         </div>
       </aside>
     );

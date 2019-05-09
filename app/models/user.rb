@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  email           :string           not null
+#  username        :string
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
   validates :email, :session_token, :password_digest, presence: true
   validates :email, uniqueness: true
@@ -6,6 +19,8 @@ class User < ApplicationRecord
   attr_reader :password
 
   has_many :messages, foreign_key: :author_id, class_name: 'Message'
+  has_many :channel_joins
+  has_many :channels, through: :channel_joins
 
   after_initialize :ensure_session_token, :ensure_username
 

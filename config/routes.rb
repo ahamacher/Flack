@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resource :session, only: [:create, :destroy]
       ## going to nest show later but want to get something working first
       resources :messages, only: [:index, :show, :create, :update, :destroy]
+      resources :channels, only: [:index, :show, :create]
     end
     mount ActionCable.server, at: '/cable'
 end
