@@ -13,7 +13,6 @@ import {
 
 const mapStateToProps = ({ entities, session }) => {
   let messages = [];
-  // debugger;
   if (entities.messages) {
     messages = Object.keys(entities.messages).map(id => entities.messages[id]);
   }

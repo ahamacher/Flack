@@ -1,0 +1,2 @@
+class ChannelJoin < ApplicationRecord
+end
