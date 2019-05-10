@@ -50,8 +50,7 @@ class Channel extends React.Component {
       { channel: "MessagesChannel", room: channelId },
       {
         connected: () => {
-          // remove this for production, displays a sucessful connection
-          console.log("connected to channel!!!");
+          // console.log("connected to channel!!!");
         },
         received: data => {
           switch (data.type) {
@@ -62,14 +61,10 @@ class Channel extends React.Component {
               this.props.deleteMessage(data.delete);
               break;
           }
-        },
-        speak: function(payload) {
-          this.perform("speak", payload);
         }
       }
     );
     this.props.fetchChannel(channelId);
-    // this.props.fetchMessages();
     this.bottom.current.scrollIntoView();
   }
 
