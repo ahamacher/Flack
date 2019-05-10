@@ -1,0 +1,188 @@
+.channel-list-container {
+  font-family: sans-serif;
+  color: rgb(197,183,198);
+  display: flex;
+  flex-basis: 220px;
+  flex-direction: column;
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 200;
+
+  .hidden {
+    display: none;
+    position: absolute;
+    visibility: hidden;
+  }
+
+  
+
+  .side-bar-add {
+    background-color: #3f0e40;
+  }
+
+  .user-modal-back {
+    background-color: rgba(0,0,0,.09);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .fa-plus-circle {
+    color: rgb(197,183,198);
+  }
+
+  .user-modal-container {
+    background-color: white;
+    width: 316px;
+    position: absolute;
+    top: 55px;
+    left: 10px;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 4px 12px 0 rgba(0,0,0,.12);
+    z-index: 2000;
+    color: #1d1c1d;
+  }
+
+  .user-modal-header {
+    margin-bottom: 8px;
+    margin-top: 16px;
+    margin-left: 24px;
+    margin-right: 24px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  .modal-user-img { 
+    margin-right: 10px; 
+  }
+  .modal-user-img img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .user-list-item button {
+    background: none;
+  }
+
+  .user-list-item {
+    list-style: none;
+    line-height: 28px;
+    margin: 0px;
+    height: 26px;
+    padding-left: 24px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .user-list-item:hover {
+    background: #1264a3;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .channel-button {
+    padding: 0 16px;
+    height: 61px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .channel-button:hover {
+    background-color: #350D36;
+  }
+
+  .channel-button:hover .current-user{
+    color: white;
+  }
+
+  .channel-button h1 {
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 17px;
+    margin-top: 9px;
+    color: white;
+    
+  }
+
+  .padding-12 {
+    height: 12px;
+  }
+  .padding-18 {
+    height: 18px;
+  }
+
+  .current-user {
+    margin-top: 2px;
+    font-size: 14px;
+    color: #ab9ba9;
+  }
+
+  .activity-icon {
+    color: #38978d;
+  }
+
+  .channel-list {
+    margin: 0;
+    list-style: none;
+    padding: 0px;
+  }
+
+  .channel-list-item {
+    list-style: none;
+    vertical-align: center;
+    margin: 0;
+    padding: 0 12px 0 15px;
+    height: 26px;
+    line-height: 26px;
+    cursor: pointer;
+  }
+
+  .channel-list-item:hover {
+    background-color: #350D36;
+  }
+
+  .channel-list-head {
+    list-style: none;
+    margin: 0;
+    padding: 0 12px 0 15px;
+    display: flex;
+    height: 26px;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .thread-head-wrapper {
+    height: 26px;
+    padding: 0 12px 0 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .thread-head-wrapper:hover {
+    background-color: #350D36;
+  }
+
+  .channel-selected {
+    list-style: none;
+    vertical-align: center;
+    margin: 0;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 12px 0 15px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    background-color: rgb(17, 100, 163);
+    color: white;
+  }
+}
+
+

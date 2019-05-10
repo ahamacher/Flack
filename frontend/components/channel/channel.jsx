@@ -5,13 +5,15 @@
 import React from "react";
 import ActionCable from "actioncable";
 import MessageItemContainer from "../message/message_item_container";
+import ChannelItemContainer from "./channel_item_container";
 
 class Channel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       body: "",
-      active: false
+      active: false,
+      userModal: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
@@ -19,10 +21,12 @@ class Channel extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.toggleClass = this.toggleClass.bind(this);
     this.channelConnection = this.channelConnection.bind(this);
+    this.channelList = this.channelList.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchChannels();
+    this.channelConnection(1);
   }
 
   componentDidUpdate() {
@@ -86,8 +90,6 @@ class Channel extends React.Component {
     const { currentUser, createMessage } = this.props;
     const parent_id = 0;
     const { currentChannel } = this.props;
-    debugger;
-
     const message = { body, parent_id, channel_id: currentChannel };
     if (body.length > 0) {
       createMessage(message);
@@ -128,14 +130,14 @@ class Channel extends React.Component {
 
   channelHead() {
     const { users } = this.props;
-
+    const { activeChannel } = this.props;
     const userCt = Object.keys(users).length;
 
     return (
       <header className="channel-header">
         <div className="head-left">
           <div className="channel-name">
-            <h2>#messages-channel</h2>
+            <h2># {activeChannel.name}</h2>
           </div>
           <div className="channel-subtitle-info">
             <i className="far fa-star" /> | <i className="far fa-user" />{" "}
@@ -194,49 +196,85 @@ class Channel extends React.Component {
   }
 
   channelList() {
-    debugger;
     return this.props.channels.map(channel => {
       return (
-        <li
-          key={channel.id}
-          className="channel-list-item"
-          onClick={() => this.channelConnection(channel.id)}
-        >
-          {channel.name}
+        <li onClick={() => this.channelConnection(channel.id)} key={channel.id} className="channel-list-item">
+          <ChannelItemContainer channel={channel} />
         </li>
       );
     });
   }
 
-  channelSideBar() {
+  toggleUserModal() {
+    const currentState = this.state.userModal;
+    this.setState({ userModal: !currentState });
+  }
+
+  sidebarUserModal() {
     const { currentUser, logout } = this.props;
     return (
+      <div
+        className="user-modal-container"
+        onClick={() => this.toggleUserModal()}
+      >
+        <div className="user-modal-header">
+          <div className="modal-user-img">
+            <img
+              src="https://s3-us-west-1.amazonaws.com/flack-app/img/nophoto.png"
+              alt=""
+            />
+          </div>
+          {currentUser.username}
+        </div>
+        <ul className="user-modal">
+          <li className="user-list-item">
+            <button type="button" onClick={logout}>
+              Sign out of Flack?
+            </button>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+
+  channelSideBar() {
+    const { currentUser, activeChannel } = this.props;
+    const { userModal } = this.state;
+    const title =
+      activeChannel.name.charAt(0).toUpperCase() + activeChannel.name.slice(1);
+    return (
       <aside className="channel-list-container">
-        <div className="temp-greeting">
-          <h5>{currentUser.userName}</h5>
-          <button type="button" onClick={logout}>
-            Logout
-          </button>
+        <div className="channel-button" onClick={() => this.toggleUserModal()}>
+          <h1>{title} ⌄</h1>
+          <h5 className="current-user">
+            <span className="activity-icon">●</span> {currentUser.username}
+          </h5>
+          <div className={userModal ? "user-modal-back" : "hidden"}>
+            {this.sidebarUserModal()}
+          </div>
         </div>
-
-        <div className="dropdown">{currentUser.userName}</div>
-        <div>
-          <h4>All threads</h4>
+        <div className="padding-12" />
+        <div className="thread-head-wrapper">
+          <div id="thread-headder">
+            <i className="far fa-comments" /> All threads
+          </div>
         </div>
-
-        <div className="channel-list">
-          Channels{" "}
-          <button type="button" className="side-bar-add">
-            {" "}
-            +{" "}
-          </button>
-          <ul>{this.channelList()}</ul>
-        </div>
+        <div className="padding-18" />
+        <ul className="channel-list">
+          <li className="channel-list-head">
+            <span>Channels</span>
+            <button type="button" className="side-bar-add">
+              <i className="fas fa-plus-circle" />
+            </button>
+          </li>
+          {this.channelList()}
+        </ul>
       </aside>
     );
   }
 
   messageForm() {
+    const { activeChannel } = this.props;
     return (
       <div className="message-form-container">
         <div className="form-wrapper">
@@ -247,7 +285,7 @@ class Channel extends React.Component {
               type="text"
               value={this.state.body}
               onChange={this.update("body")}
-              placeholder="Message #message-channel"
+              placeholder={`Message #${activeChannel.name}`}
               rows="1"
               data-min-rows="1"
               autoFocus
@@ -260,6 +298,7 @@ class Channel extends React.Component {
   }
 
   render() {
+    const { activeChannel } = this.props;
     return (
       <div className="channel-container">
         {this.channelSideBar()}
@@ -269,7 +308,7 @@ class Channel extends React.Component {
             <li className="list-padding">
               <h4>
                 This is the very beginning of the{" "}
-                <span className="bold"># messages-channel</span> channel
+                <span className="bold"># {activeChannel.name}</span> channel
               </h4>
             </li>
             {this.messageList()}

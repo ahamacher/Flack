@@ -21,12 +21,18 @@ const mapStateToProps = ({ entities, session }) => {
   if (entities.channels) {
     channels = Object.keys(entities.channels).map(id => entities.channels[id]);
   }
+  let activeChannel = {name: ""};
+  if (entities.channels[session.channelId]){
+    activeChannel = entities.channels[session.channelId]
+  }
+
   return {
     currentUser: entities.users[session.id],
     users: entities.users,
     messages,
     channels,
-    currentChannel: session.channelId
+    currentChannel: session.channelId,
+    activeChannel
   };
 };
 
