@@ -10,9 +10,11 @@ const receiveAllChannels = channels => ({
   channels
 });
 
-const receiveChannel = channel => ({
+const receiveChannel = ({channel, messages, users}) => ({
   type: RECEIVE_CHANNEL,
-  channel
+  channel,
+  messages,
+  users
 });
 
 const receiveChannelErrors = errors => ({
@@ -31,9 +33,9 @@ export const fetchChannels = () => dispatch =>
     dispatch(receiveAllChannels(channels))
   );
 
-export const fetchChannel = channel => dispatch =>
-  ChannelApiUtils.fetchChannel(channel).then(
-    channel => dispatch(receiveChannel(channel)),
+export const fetchChannel = channelId => dispatch =>
+  ChannelApiUtils.fetchChannel(channelId).then(
+    payload => dispatch(receiveChannel(payload)),
     err => dispatch(receiveChannelErrors(err))
   );
 

@@ -18,11 +18,11 @@ class Channel extends React.Component {
     this.bottom = React.createRef();
     this.handleClick = this.handleClick.bind(this);
     this.toggleClass = this.toggleClass.bind(this);
+    this.channelConnection = this.channelConnection.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchMessages();
-    this.bottom.current.scrollIntoView();
+    this.props.fetchChannels();
   }
 
   componentDidUpdate() {
@@ -59,11 +59,14 @@ class Channel extends React.Component {
               break;
           }
         },
-        speak: function (payload) {
+        speak: function(payload) {
           this.perform("speak", payload);
         }
       }
     );
+    this.props.fetchChannel(channelId);
+    // this.props.fetchMessages();
+    this.bottom.current.scrollIntoView();
   }
 
   handleClick(e) {
@@ -81,10 +84,11 @@ class Channel extends React.Component {
     e.preventDefault();
     const { body } = this.state;
     const { currentUser, createMessage } = this.props;
-    const author_id = currentUser.id;
     const parent_id = 0;
+    const { currentChannel } = this.props;
+    debugger;
 
-    const message = { body, author_id, parent_id, channel_id: 1 };
+    const message = { body, parent_id, channel_id: currentChannel };
     if (body.length > 0) {
       createMessage(message);
       this.setState({ body: "" });
@@ -189,6 +193,21 @@ class Channel extends React.Component {
     );
   }
 
+  channelList() {
+    debugger;
+    return this.props.channels.map(channel => {
+      return (
+        <li
+          key={channel.id}
+          className="channel-list-item"
+          onClick={() => this.channelConnection(channel.id)}
+        >
+          {channel.name}
+        </li>
+      );
+    });
+  }
+
   channelSideBar() {
     const { currentUser, logout } = this.props;
     return (
@@ -206,10 +225,12 @@ class Channel extends React.Component {
         </div>
 
         <div className="channel-list">
-          Channels <button type="button" className="side-bar-add"> + </button>
-          <ul>
-            
-          </ul>
+          Channels{" "}
+          <button type="button" className="side-bar-add">
+            {" "}
+            +{" "}
+          </button>
+          <ul>{this.channelList()}</ul>
         </div>
       </aside>
     );
@@ -246,8 +267,10 @@ class Channel extends React.Component {
         <div id="message-window">
           <ul className="message-list">
             <li className="list-padding">
-              <h4>This is the very beginning of the{" "}
-                <span className="bold"># messages-channel</span> channel</h4>
+              <h4>
+                This is the very beginning of the{" "}
+                <span className="bold"># messages-channel</span> channel
+              </h4>
             </li>
             {this.messageList()}
             <div ref={this.bottom} />

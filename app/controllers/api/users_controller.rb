@@ -3,6 +3,9 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
+      Channel.where(default: true).each do |channel|
+        ChannelJoin.create(user_id: @user.id, channel_id: channel.id)
+      end
       render "api/users/show"
     else
       render json: @user.errors.full_messages, status: 422

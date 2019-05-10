@@ -15,7 +15,7 @@ class MessagesChannel < ApplicationCable::Channel
   end
 
   def stream_channel
-    "#{channel}_#{params['room'] || 'general'}"
+    "MessagesChannel_#{params['room']}:messages"
   end
 
 

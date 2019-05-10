@@ -1,6 +1,7 @@
 class Api::MessagesController < ApplicationController
   def index
     ## adding a .includes and a key will grab the though assosications as well in 1 query call
+    debugger
     @messages = Message.all.includes(:user)
   end
   
@@ -28,7 +29,7 @@ class Api::MessagesController < ApplicationController
           username: @message.user.username
         }
       }
-      ActionCable.server.broadcast("MessagesChannel", data)
+      ActionCable.server.broadcast("MessagesChannel_#{@message.channel_id}:messages", data)
       
       render 'api/messages/show'
     else
@@ -51,7 +52,7 @@ class Api::MessagesController < ApplicationController
           parent_id: @message.parent_id
         }
       }
-      ActionCable.server.broadcast("MessagesChannel", data)
+      ActionCable.server.broadcast("MessagesChannel_#{@message.channel_id}:messages", data)
       
       render 'api/messages/show'
     else

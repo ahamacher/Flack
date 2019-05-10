@@ -10,17 +10,23 @@ import {
   receiveAllMessages,
   deleteMessage
 } from "../../actions/message_actions";
+import { fetchChannels, fetchChannel } from "../../actions/channel_actions";
 
 const mapStateToProps = ({ entities, session }) => {
   let messages = [];
   if (entities.messages) {
     messages = Object.keys(entities.messages).map(id => entities.messages[id]);
   }
+  let channels = [];
+  if (entities.channels) {
+    channels = Object.keys(entities.channels).map(id => entities.channels[id]);
+  }
   return {
     currentUser: entities.users[session.id],
     users: entities.users,
     messages,
-    channel_id: "MessagesChannel"
+    channels,
+    currentChannel: session.channelId
   };
 };
 
@@ -31,7 +37,9 @@ const mapDispatchToProps = dispatch => ({
   createMessage: message => dispatch(createMessage(message)),
   clearMessage: () => dispatch(clearMessage()),
   receiveMessage: message => dispatch(receiveMessage(message)),
-  deleteMessage: message => dispatch(deleteMessage(message))
+  deleteMessage: message => dispatch(deleteMessage(message)),
+  fetchChannels: () => dispatch(fetchChannels()),
+  fetchChannel: channelId => dispatch(fetchChannel(channelId))
 });
 
 export default connect(
