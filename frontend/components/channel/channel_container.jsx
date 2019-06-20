@@ -10,7 +10,7 @@ import {
   receiveAllMessages,
   deleteMessage
 } from "../../actions/message_actions";
-import { fetchChannels, fetchChannel } from "../../actions/channel_actions";
+import { fetchChannels, fetchChannel, createChannel } from "../../actions/channel_actions";
 
 const mapStateToProps = ({ entities, session }) => {
   let messages = [];

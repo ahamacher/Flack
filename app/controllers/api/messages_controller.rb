@@ -1,7 +1,7 @@
 class Api::MessagesController < ApplicationController
   def index
     ## adding a .includes and a key will grab the though assosications as well in 1 query call
-    debugger
+    # debugger
     @messages = Message.all.includes(:user)
   end
   

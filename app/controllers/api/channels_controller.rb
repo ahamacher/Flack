@@ -11,8 +11,10 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
     @channel.author_id = current_user.id
     if @channel.save
+      ## channel isnt creating a joins. fix this!
+      ##
       ChannelJoin.create({channel_id: @channel.id, user_id: @channel.author_id})
-      render "api/channels/show"
+      render show
     else
       render json: @channel.errors.full_messages, status: 422
     end
@@ -23,7 +25,7 @@ class Api::ChannelsController < ApplicationController
   private
 
   def channel_params
-    params.require(:channel).permit(:name, :is_dm, :default)
+    params.require(:channel).permit(:name, :is_dm, :default, :subtitle)
   end
 
 end

@@ -6,6 +6,7 @@ import React from "react";
 import ActionCable from "actioncable";
 import MessageItemContainer from "../message/message_item_container";
 import ChannelItemContainer from "./channel_item_container";
+import NewChannelFormContainer from "./new_channel_form_container";
 
 class Channel extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class Channel extends React.Component {
     this.state = {
       body: "",
       active: false,
-      userModal: false
+      userModal: false,
+      channelModal: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
@@ -22,6 +24,7 @@ class Channel extends React.Component {
     this.toggleClass = this.toggleClass.bind(this);
     this.channelConnection = this.channelConnection.bind(this);
     this.channelList = this.channelList.bind(this);
+    this.toggelChannelMod = this.toggelChannelMod.bind(this);
   }
 
   componentDidMount() {
@@ -193,7 +196,11 @@ class Channel extends React.Component {
   channelList() {
     return this.props.channels.map(channel => {
       return (
-        <li onClick={() => this.channelConnection(channel.id)} key={channel.id} className="channel-list-item">
+        <li
+          onClick={() => this.channelConnection(channel.id)}
+          key={channel.id}
+          className="channel-list-item"
+        >
           <ChannelItemContainer channel={channel} />
         </li>
       );
@@ -232,6 +239,21 @@ class Channel extends React.Component {
     );
   }
 
+  newChannelMod() {
+    const { channelModal } = this.state;
+    return channelModal ? (
+      <NewChannelFormContainer
+        toggle={this.toggelChannelMod}
+        channelConnection={this.channelConnection}
+      />
+    ) : null;
+  }
+
+  toggelChannelMod() {
+    const { channelModal } = this.state;
+    this.setState({ channelModal: !channelModal });
+  }
+
   channelSideBar() {
     const { currentUser, activeChannel } = this.props;
     const { userModal } = this.state;
@@ -258,7 +280,11 @@ class Channel extends React.Component {
         <ul className="channel-list">
           <li className="channel-list-head">
             <span>Channels</span>
-            <button type="button" className="side-bar-add">
+            <button
+              type="button"
+              className="side-bar-add"
+              onClick={() => this.toggelChannelMod()}
+            >
               <i className="fas fa-plus-circle" />
             </button>
           </li>
@@ -296,6 +322,7 @@ class Channel extends React.Component {
     const { activeChannel } = this.props;
     return (
       <div className="channel-container">
+        {this.newChannelMod()}
         {this.channelSideBar()}
         {this.channelHead()}
         <div id="message-window">
