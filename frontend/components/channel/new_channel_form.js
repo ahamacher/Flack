@@ -39,7 +39,7 @@ class NewChannelForm extends React.Component {
       is_dm: false,
       default: defaultChan
     };
-    const { createChannel, channelConnection } = this.props;
+    const { createChannel } = this.props;
     createChannel(values);
     this.close();
   }

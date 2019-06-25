@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { createChannel } from "../../util/channel_util";
+import { createChannel } from "../../actions/channel_actions";
 import NewChannelForm from "./new_channel_form";
 
 const mapStateToProps = (state, ownProps) => {
