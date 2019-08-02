@@ -12,7 +12,7 @@
 #
 
 class Channel < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: true, length: { in: 3..22 }
 
   belongs_to :author,
   foreign_key: :author_id,

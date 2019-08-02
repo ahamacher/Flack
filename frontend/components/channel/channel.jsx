@@ -6,7 +6,7 @@ import React from "react";
 import ActionCable from "actioncable";
 import MessageItemContainer from "../message/message_item_container";
 import ChannelItemContainer from "./channel_item_container";
-import NewChannelFormContainer from "./new_channel_form_container";
+import ModalRoot from "../modals/modal_root";
 
 class Channel extends React.Component {
   constructor(props) {
@@ -14,8 +14,7 @@ class Channel extends React.Component {
     this.state = {
       body: "",
       active: false,
-      userModal: false,
-      channelModal: false
+      userModal: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
@@ -24,7 +23,7 @@ class Channel extends React.Component {
     this.toggleClass = this.toggleClass.bind(this);
     this.channelConnection = this.channelConnection.bind(this);
     this.channelList = this.channelList.bind(this);
-    this.toggelChannelMod = this.toggelChannelMod.bind(this);
+    // this.toggelChannelMod = this.toggelChannelMod.bind(this);
   }
 
   componentDidMount() {
@@ -239,23 +238,8 @@ class Channel extends React.Component {
     );
   }
 
-  newChannelMod() {
-    const { channelModal } = this.state;
-    return channelModal ? (
-      <NewChannelFormContainer
-        toggle={this.toggelChannelMod}
-        channelConnection={this.channelConnection}
-      />
-    ) : null;
-  }
-
-  toggelChannelMod() {
-    const { channelModal } = this.state;
-    this.setState({ channelModal: !channelModal });
-  }
-
   channelSideBar() {
-    const { currentUser, activeChannel } = this.props;
+    const { currentUser, activeChannel, createChannelModal } = this.props;
     const { userModal } = this.state;
     const title =
       activeChannel.name.charAt(0).toUpperCase() + activeChannel.name.slice(1);
@@ -283,7 +267,7 @@ class Channel extends React.Component {
             <button
               type="button"
               className="side-bar-add"
-              onClick={() => this.toggelChannelMod()}
+              onClick={() => createChannelModal()}
             >
               <i className="fas fa-plus-circle" />
             </button>
@@ -322,7 +306,7 @@ class Channel extends React.Component {
     const { activeChannel } = this.props;
     return (
       <div className="channel-container">
-        {this.newChannelMod()}
+        <ModalRoot />
         {this.channelSideBar()}
         {this.channelHead()}
         <div id="message-window">

@@ -24,10 +24,10 @@ class NewChannelForm extends React.Component {
   }
 
   close() {
-    const { modToggle } = this.props;
+    const { closeModal } = this.props;
 
     this.setState({ name: "", subtitle: "", defaultChan: true });
-    modToggle();
+    closeModal();
   }
 
   handleSubmit(e) {
@@ -41,7 +41,21 @@ class NewChannelForm extends React.Component {
     };
     const { createChannel } = this.props;
     createChannel(values);
-    this.close();
+  }
+
+  renderErrors() {
+    if (this.props.errors.responseJSON) {
+      return (
+        <ul className="errors">
+          {this.props.errors.responseJSON.map((error, i) => (
+            <li key={`error-${i}`} className="error">
+              {error}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return <div className="errors" />;
   }
 
   render() {
@@ -53,16 +67,44 @@ class NewChannelForm extends React.Component {
           <div className="close-sub">esc</div>
         </div>
         <form className="new-chan-form">
-          <label className="form-title">Name
-            <input type="text" value={name} onChange={this.update("name")} />
-          </label>
-          <div className="form-subtitle">
-            Names must be lowercase, without spaces or periods and shorter than
-            22 characters.
-          </div>
-          <label className="form-title">Purpose <span>(optional)</span>
-            <input type="text" value={subtitle} onChange={this.update("subtitle")}/>
-          </label>
+          <h1 className="form-headder">Create a channel</h1>
+          <p>
+            Channels are where your members communicate. They’re best when
+            organized around a topic — #marketing, for example.
+          </p>
+          <section className="form-option">
+            <div className="form-input-title">Name</div>
+
+            {defaultChan ? (
+              <div className="channel-hash">#</div> ) : (
+              <i className="fas fa-lock channel-hash" id="lock"></i> 
+            )}
+            <input
+              type="text"
+              value={name}
+              onChange={this.update("name")}
+              className="text-input"
+              placeholder="e.g. marketing"
+            />
+            <div className="form-input-subtitle">
+              Names must be lowercase, without spaces or periods and shorter
+              than 22 characters.
+            </div>
+          </section>
+          <section className="form-option">
+            <div className="form-input-title">
+              Purpose <span>(optional)</span>
+            </div>
+            <input
+              type="text"
+              value={subtitle}
+              onChange={this.update("subtitle")}
+              className="text-input"
+            />
+            <div className="form-input-subtitle">
+              What’s this channel about?
+            </div>
+          </section>
           <input
             type="checkbox"
             name="privacy"
@@ -83,9 +125,14 @@ class NewChannelForm extends React.Component {
           </div> */}
         </form>
         <div className="channel-form-buttons">
-          <button type="button" onClick={this.close}>Cancel</button>
-          <button type="button" onClick={this.handleSubmit}>Create Channel</button>
+          <button type="button" onClick={this.close}>
+            Cancel
+          </button>
+          <button type="button" onClick={this.handleSubmit}>
+            Create Channel
+          </button>
         </div>
+        {this.renderErrors()}
       </div>
     );
   }

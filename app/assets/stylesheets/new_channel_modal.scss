@@ -1,10 +1,105 @@
 .new-channel-mod {
     background-color: white;
     position: absolute;
-    color: black;
+    color: #1D1C1D;
     z-index: 9999;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 109px 32px;
+    font-family: sans-serif;
+
+    .new-chan-form {
+        width: 640px;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+    }
+
+    .form-headder {
+        font-size: 32px;
+        margin-top: 0;
+        margin-bottom: 16px;
+        line-height: 40px;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 15px;
+        margin-bottom: 16px;
+    }
+
+    #close-new-chan-mod {
+        justify-self: flex-end;
+        width: 64px;
+        height: 64px;
+        border-radius: 100%;
+        text-align: center;
+        color: #616061;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-self: flex-end;
+        position: absolute;
+        top: 48px;
+    }
+
+    .form-option {
+        position: relative;
+    }
+
+    .channel-hash {
+        position: absolute;
+        bottom: 49px;
+        left: 14px;
+        font-size: 20px;
+        color: #616061;
+    }
+
+    #lock {
+        font-size: 15px;
+        bottom: 54px;
+    }
+
+    .form-input-title {
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .text-input {
+        padding: 11px 12px 13px 36px;
+        border-radius: 4px;
+        box-sizing: border-box;
+        border: 1px solid #868686;
+        display: block;
+        width: 100%;
+    }
+
+    .text-input:focus {
+        box-shadow: 0 0 1pt 3pt skyblue;
+    }
+
+    .form-input-subtitle {
+        font-size: 13px;
+        margin: 4px 0px 20px;
+        color: #616061;
+    }
+
+    .close-big {
+        font-size: 30px;
+    }
+
+    .close-sub {
+        font-size: 10px;
+        margin-top: -4px;
+    }
+
+    #close-new-chan-mod:hover {
+        background-color: #DDDDDD;
+        color: #000000;
+    }
 }
