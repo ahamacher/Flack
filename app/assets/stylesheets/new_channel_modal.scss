@@ -102,4 +102,113 @@
         background-color: #DDDDDD;
         color: #000000;
     }
+
+    #public-option {
+        display: inline-block;
+    }
+
+    .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    }
+
+    .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+
+
+    .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFF;
+    transition: .2s;
+    }
+
+    .slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 5px;
+    bottom: 5px;
+    background-color: rgba(29,28,29,.7);
+    transition: .2s;
+    }
+
+    input:checked + .slider {
+    background-color: #007a5a;
+    }
+
+    input:focus + .slider {
+    box-shadow: 0 0 1pt 3pt skyblue;
+    }
+
+    input:checked + .slider:before {
+    transform: translateX(26px);
+    background-color: rgba(255,255,255,1)
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+    border-radius: 34px;
+    border: 1px solid rgba(29,28,29,.7);
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .checkbox-items {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .privacy-text {
+        display: block;
+    }
+
+    .channel-form-buttons {
+        width: 640px;
+        display: flex;
+        align-self: center;
+    }
+
+    .form-button {
+        font-size: 15px;
+        height: 36px;
+        min-width: 80px;
+        padding: 0 12px 1px;
+        background: #fff;
+        border: 1px solid rgba(29,28,29,.3);
+        color: #1d1c1d;
+        font-weight: 700;
+        margin-right: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+        align-items: center;
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .create {
+        background-color: #007a5a;
+        color: white;
+    }
+
+    .create-unfill { 
+        background: #ddd;
+        cursor: default;
+        color: rgba(29,28,29,.75);
+    }
 }

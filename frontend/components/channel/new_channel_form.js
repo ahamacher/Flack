@@ -73,6 +73,7 @@ class NewChannelForm extends React.Component {
             organized around a topic — #marketing, for example.
           </p>
           <section className="form-option">
+            <section className="errors">{this.renderErrors()}</section>
             <div className="form-input-title">Name</div>
 
             {defaultChan ? (
@@ -105,34 +106,37 @@ class NewChannelForm extends React.Component {
               What’s this channel about?
             </div>
           </section>
-          <input
-            type="checkbox"
-            name="privacy"
-            id="privacy"
-            checked={defaultChan}
-            onChange={this.toggle()}
-          />
-          {defaultChan ? (
-            <div id="public-option">Anyone can join your channel.</div>
-          ) : (
-            <div id="private-option">
-              This channel can only be viewed or joined by invite.
-            </div>
-          )}
-          {/* <div id="public-option">Anyone can join your channel.</div>
-          <div id="private-option">
-            This channel can only be viewed or joined by invite.
-          </div> */}
+          <section className="checkbox-items">
+            {defaultChan ? (
+              <div className="privacy-text">Anyone can join your channel.</div>
+            ) : (
+                <div className="privacy-text">
+                This channel can only be viewed or joined by invite.
+              </div>
+            )}
+            <label className="switch">
+              <input
+                type="checkbox"
+                name="privacy"
+                checked={defaultChan}
+                onChange={this.toggle()}
+              />
+              <span className="slider round"></span>
+            </label>
+          </section>
         </form>
         <div className="channel-form-buttons">
-          <button type="button" onClick={this.close}>
+          <button className="form-button cancel" type="button" onClick={this.close}>
             Cancel
           </button>
-          <button type="button" onClick={this.handleSubmit}>
-            Create Channel
-          </button>
+          {name ? (
+            <button type="button" className="form-button create" onClick={this.handleSubmit}>
+              Create
+            </button>
+          ) : (
+            <button className="form-button create-unfill">Create</button>
+          )}
         </div>
-        {this.renderErrors()}
       </div>
     );
   }
