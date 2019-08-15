@@ -6,12 +6,11 @@ export const createChannelModal = () => ({
   modalType: "NEW_CHANNEL"
 });
 
+export const createDmModal = () => ({
+  type: SHOW_MODAL,
+  modalType: "NEW_DM"
+});
+
 export const closeModal = () => ({
   type: CLOSE_MODAL
 });
-
-//
-// export const openChannelModal = () => dispatch =>
-//   dispatch(createChannelModal());
-
-// export const closeAllModal = () => dispatch => dispatch(closeModal());

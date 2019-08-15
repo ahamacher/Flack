@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { createChannel, clearChannelErrors } from "../../actions/channel_actions";
+import { createChannel } from "../../actions/channel_actions";
 import { createChannelModal, closeModal } from "../../actions/modal_actions";
-import NewChannelForm from "./new_channel_form";
+import NewDmForm from "./new_dm_form";
 
 const mapStateToProps = (state, ownProps) => {
   const { errors } = state;
@@ -15,11 +15,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
   createChannel: channel => dispatch(createChannel(channel)),
   createChannelModal: () => dispatch(createChannelModal()),
-  closeModal: () => dispatch(closeModal()),
-  clearChannelErrors: () => dispatch(clearChannelErrors())
+  closeModal: () => dispatch(closeModal())
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewChannelForm);
+)(NewDmForm);

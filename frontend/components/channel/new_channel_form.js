@@ -24,9 +24,10 @@ class NewChannelForm extends React.Component {
   }
 
   close() {
-    const { closeModal } = this.props;
+    const { closeModal, clearChannelErrors } = this.props;
 
     this.setState({ name: "", subtitle: "", defaultChan: true });
+    clearChannelErrors();
     closeModal();
   }
 

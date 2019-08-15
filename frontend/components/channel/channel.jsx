@@ -6,6 +6,7 @@ import React from "react";
 import ActionCable from "actioncable";
 import MessageItemContainer from "../message/message_item_container";
 import ChannelItemContainer from "./channel_item_container";
+import DmListContainer from "./dm_list_container";
 import ModalRoot from "../modals/modal_root";
 
 class Channel extends React.Component {
@@ -274,6 +275,7 @@ class Channel extends React.Component {
           </li>
           {this.channelList()}
         </ul>
+        <DmListContainer />
       </aside>
     );
   }
