@@ -24,7 +24,6 @@ class Channel extends React.Component {
     this.toggleClass = this.toggleClass.bind(this);
     this.channelConnection = this.channelConnection.bind(this);
     this.channelList = this.channelList.bind(this);
-    // this.toggelChannelMod = this.toggelChannelMod.bind(this);
   }
 
   componentDidMount() {
@@ -260,7 +259,7 @@ class Channel extends React.Component {
   }
 
   channelSideBar() {
-    const { activeChannel, users, currentUser } = this.props;
+    const { activeChannel, users, currentUser, createChannelModal } = this.props;
     const { userModal } = this.state;
     const pholder = activeChannel.is_dm ? this.selectChannelName() : activeChannel.name.charAt(0).toUpperCase() + activeChannel.name.slice(1)
     const title = pholder;
