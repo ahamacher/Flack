@@ -10,8 +10,17 @@ class Api::ChannelsController < ApplicationController
   def create
     @channel = Channel.new(channel_params)
     @channel.author_id = current_user.id
+    if params["channel"]["dm_receiver"] != nil
+      recipient_id = params["channel"]["dm_receiver"]
+    end
+
     if @channel.save
-      ChannelJoin.create({channel_id: @channel.id, user_id: @channel.author_id})
+      if recipient_id
+        ChannelJoin.create({channel_id: @channel.id, user_id: @channel.author_id})
+        ChannelJoin.create({channel_id: @channel.id, user_id: recipient_id})
+      else
+        ChannelJoin.create({channel_id: @channel.id, user_id: @channel.author_id})
+      end
       render 'api/channels/show'
     else
       render json: @channel.errors.full_messages, status: 422

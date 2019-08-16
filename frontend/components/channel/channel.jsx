@@ -6,6 +6,7 @@ import React from "react";
 import ActionCable from "actioncable";
 import MessageItemContainer from "../message/message_item_container";
 import ChannelItemContainer from "./channel_item_container";
+import DmListContainer from "./dm_list_container";
 import ModalRoot from "../modals/modal_root";
 
 class Channel extends React.Component {
@@ -14,7 +15,7 @@ class Channel extends React.Component {
     this.state = {
       body: "",
       active: false,
-      userModal: false
+      userModal: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
@@ -126,20 +127,23 @@ class Channel extends React.Component {
   }
 
   channelHead() {
-    const { users } = this.props;
     const { activeChannel } = this.props;
-    const userCt = Object.keys(users).length;
-
     return (
       <header className="channel-header">
         <div className="head-left">
           <div className="channel-name">
-            <h2># {activeChannel.name}</h2>
+            {activeChannel.is_dm ? 
+              (<h2># Direct Message</h2>) : 
+              (<h2># {activeChannel.name}</h2>)
+            }
           </div>
           <div className="channel-subtitle-info">
             <i className="far fa-star" /> | <i className="far fa-user" />{" "}
-            {userCt} | <i className="fas fa-thumbtack" /> 0 | channel
-            description
+            {activeChannel.ids ? `${activeChannel.ids.length}` : "0" } | <i className="fas fa-thumbtack" /> 0 | {
+              activeChannel.subtitle ? 
+              `${activeChannel.subtitle}` : 
+              ('channel description')
+              }
           </div>
         </div>
         <div className="head-right">
@@ -194,15 +198,17 @@ class Channel extends React.Component {
 
   channelList() {
     return this.props.channels.map(channel => {
-      return (
-        <li
-          onClick={() => this.channelConnection(channel.id)}
-          key={channel.id}
-          className="channel-list-item"
-        >
-          <ChannelItemContainer channel={channel} />
-        </li>
-      );
+      if (channel.is_dm === false) {
+        return (
+          <li
+            onClick={() => this.channelConnection(channel.id)}
+            key={channel.id}
+            className="channel-list-item"
+          >
+            <ChannelItemContainer channel={channel} />
+          </li>
+        );
+      }
     });
   }
 
@@ -238,11 +244,26 @@ class Channel extends React.Component {
     );
   }
 
+  selectChannelName(){
+    const { activeChannel, users, currentUser } = this.props;
+    let dmTitle = ""
+    let dmRecipient = null;
+    if (activeChannel.is_dm) {
+      for (let i = 0; i < activeChannel.ids.length; i++) {
+        if (activeChannel.ids[i] !== currentUser.id) {
+          dmRecipient = activeChannel.ids[i];
+        }
+      }
+      dmTitle = `${users[dmRecipient].username}`
+    }
+    return dmTitle;
+  }
+
   channelSideBar() {
-    const { currentUser, activeChannel, createChannelModal } = this.props;
+    const { activeChannel, users, currentUser } = this.props;
     const { userModal } = this.state;
-    const title =
-      activeChannel.name.charAt(0).toUpperCase() + activeChannel.name.slice(1);
+    const pholder = activeChannel.is_dm ? this.selectChannelName() : activeChannel.name.charAt(0).toUpperCase() + activeChannel.name.slice(1)
+    const title = pholder;
     return (
       <aside className="channel-list-container">
         <div className="channel-button" onClick={() => this.toggleUserModal()}>
@@ -274,12 +295,14 @@ class Channel extends React.Component {
           </li>
           {this.channelList()}
         </ul>
+        <DmListContainer channelConnection={this.channelConnection}/>
       </aside>
     );
   }
 
   messageForm() {
     const { activeChannel } = this.props;
+    const pholder = activeChannel.is_dm ? this.selectChannelName() : activeChannel.name 
     return (
       <div className="message-form-container">
         <div className="form-wrapper">
@@ -290,7 +313,7 @@ class Channel extends React.Component {
               type="text"
               value={this.state.body}
               onChange={this.update("body")}
-              placeholder={`Message #${activeChannel.name}`}
+              placeholder={`Message #${pholder}`}
               rows="1"
               data-min-rows="1"
               autoFocus
@@ -303,18 +326,31 @@ class Channel extends React.Component {
   }
 
   render() {
-    const { activeChannel } = this.props;
+    const { activeChannel} = this.props;
     return (
       <div className="channel-container">
-        <ModalRoot />
+        <ModalRoot modalProps={{channelConnection: this.channelConnection}} />
         {this.channelSideBar()}
         {this.channelHead()}
         <div id="message-window">
           <ul className="message-list">
             <li className="list-padding">
               <h4>
-                This is the very beginning of the{" "}
-                <span className="bold"># {activeChannel.name}</span> channel
+                This is the very beginning of the
+                 {
+                  activeChannel.is_dm ? 
+                  (
+                    <>
+                        <span> direct messages with </span>
+                        <span className="bold">{this.selectChannelName()}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="bold"> #{activeChannel.name}</span> 
+                      <span> channel</span>
+                    </>
+                  )
+                }
               </h4>
             </li>
             {this.messageList()}

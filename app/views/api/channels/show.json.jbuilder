@@ -2,7 +2,8 @@
 #isnt working for some reason???
 
 json.channel do
-  json.extract! @channel, :id, :name, :is_dm, :default
+  json.extract! @channel, :id, :name, :is_dm, :default, :subtitle
+  json.extract! @channel.users, :ids
 end
 
 json.messages do
