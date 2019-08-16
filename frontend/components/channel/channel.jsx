@@ -127,9 +127,7 @@ class Channel extends React.Component {
   }
 
   channelHead() {
-    const { users } = this.props;
     const { activeChannel } = this.props;
-    debugger;
     return (
       <header className="channel-header">
         <div className="head-left">
