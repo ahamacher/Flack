@@ -10,7 +10,6 @@ const MODAL_COMPONENTS = {
 
 const ModalRoot = ({ modalType, modalProps }) => {
   if (!modalType) return null;
-
   const SelectedModal = MODAL_COMPONENTS[modalType];
   return <SelectedModal {...modalProps} />;
 };

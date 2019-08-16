@@ -14,13 +14,20 @@ import { fetchChannels, fetchChannel, createChannel } from "../../actions/channe
 import { createChannelModal } from "../../actions/modal_actions";
 
 const mapStateToProps = ({ entities, session }) => {
+  let currentUserId = session.id;
   let messages = [];
   if (entities.messages) {
     messages = Object.keys(entities.messages).map(id => entities.messages[id]);
   }
   let channels = [];
+  const filtered = [];
   if (entities.channels) {
     channels = Object.keys(entities.channels).map(id => entities.channels[id]);
+    channels.forEach(channel => {
+      if (channel.ids.includes(currentUserId)) {
+        filtered.push(channel);
+      }
+    });
   }
   let activeChannel = {name: ""};
   if (entities.channels[session.channelId]){
@@ -31,7 +38,7 @@ const mapStateToProps = ({ entities, session }) => {
     currentUser: entities.users[session.id],
     users: entities.users,
     messages,
-    channels,
+    channels: filtered,
     currentChannel: session.channelId,
     activeChannel
   };

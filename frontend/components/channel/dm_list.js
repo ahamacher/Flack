@@ -3,44 +3,24 @@ import { fetchChannels } from "../../actions/channel_actions";
 import DmListItem from "./dm_list_item";
 
 class DmList extends Component {
-  constructor(props){
-    super(props);
-
-    this.dmChannels = [];
-    this.filter = this.filter.bind(this);
-  }
-
   componentDidMount() {
     fetchChannels();
-    this.filter();
   }
 
-  componentDidUpdate() {
-    this.filter();
-  }
-
-  filter() {
-    const { channels } = this.props;
-    if (channels) {
-      channels.forEach(channel => {
-        if (channel.isDM) {
-          this.dmChannels.push(channel);
-        }
-      });
-    }
-  }
-
-  dmListItem(){
-    return this.dmChannels.map(channel => {
-      return (
-        <li
-          onClick={() => this.channelConnection(channel.id)}
-          key={channel.id}
-          className="channel-list-item"
-        >
-          <DmListItem channel={channel} />
-        </li>
-      );
+  dmListItem() {
+    const { channelConnection, channels } = this.props;
+    return channels.map(channel => {
+      if (channel.is_dm) {
+        return (
+          <li
+            onClick={() => channelConnection(channel.id)}
+            key={channel.id}
+            className="channel-list-item"
+          >
+            <DmListItem channel={channel} />
+          </li>
+        );
+      }
     });
   }
 

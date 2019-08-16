@@ -2,7 +2,7 @@
     background-color: white;
     position: absolute;
     color: #1D1C1D;
-    z-index: 9999;
+    z-index: 100000;
     top: 0;
     bottom: 0;
     left: 0;
@@ -210,5 +210,49 @@
         background: #ddd;
         cursor: default;
         color: rgba(29,28,29,.75);
+    }
+
+
+    .user-list-item {
+        list-style: none;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        padding: 14px;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(29,28,29,.13);
+    }
+
+    .user-list:last-child {
+        border-bottom: 1px solid rgba(29,28,29,.13);
+    }
+
+    .user-list-item p {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .user-list-item:hover {
+        background-color: #f8f8f8;
+        cursor: pointer;
+    }
+
+    .post-user-img {
+        align-self: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 2px;
+        margin-right: 12px;
+    }
+
+    .user-list {
+        margin-top: 8px;
+    }
+
+    .user-list-head {
+        font-size: 13px;
+        color: #868686;
+        margin-top:5px;
+        margin-left: 3px;
     }
 }

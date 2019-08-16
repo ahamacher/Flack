@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from "react";
 
 class NewDmForm extends React.Component {
@@ -10,11 +12,25 @@ class NewDmForm extends React.Component {
     };
     this.update = this.update.bind(this);
     this.close = this.close.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.createDM = this.createDM.bind(this);
+    this.existing = false;
+    this.existingChan = {};
+    this.filteredUsers = [];
+    this.userList = this.userList.bind(this);
+    this.filterUsers = this.filterUsers.bind(this);
+  }
+
+  componentDidMount() {
+    const { fetchUsers } = this.props;
+    fetchUsers();
+    this.filterUsers();
   }
 
   update(form) {
-    return e => this.setState({ [form]: e.currentTarget.value });
+    return e => {
+      this.filterUsers(e.currentTarget.value);
+      this.setState({ [form]: e.currentTarget.value });
+    };
   }
 
   close() {
@@ -24,21 +40,88 @@ class NewDmForm extends React.Component {
     closeModal();
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const { name, subtitle, defaultChan } = this.state;
+  createDM(id) {
+    const { subtitle, defaultChan } = this.state;
+    const {
+      currentUser,
+      createChannel,
+      channels,
+      channelConnection
+    } = this.props;
+
+    let channelName = currentUser + "+" + id;
+    const channelList = Object.keys(channels);
+
+    function compare(arr1, arr2) {
+      if (arr1 === arr2) return true;
+      if (arr1 == null || arr2 == null) return false;
+      if (arr1.length !== arr2.length) return false;
+
+      arr1.sort();
+      arr2.sort();
+      for (let i = 0; i < arr1.length; ++i) {
+        if (arr1[i] !== arr2[i]) return false;
+      }
+      return true;
+    }
+
+    for (let i = 0; i < channelList.length; i++) {
+      const element = channelList[i];
+      if (compare(channels[element].ids, [id, currentUser])) {
+        this.existing = true;
+        this.existingChan = Object.assign(channels[element]);
+      }
+    }
+
     const values = {
-      name,
+      name: channelName,
       subtitle,
       is_dm: true,
-      default: defaultChan
+      default: defaultChan,
+      dm_receiver: id
     };
-    const { createChannel } = this.props;
-    createChannel(values);
+    if (this.existing) {
+      this.close();
+      channelConnection(this.existingChan.id);
+    } else {
+      createChannel(values);
+    }
+  }
+
+  filterUsers(input = "") {
+    const { users } = this.props;
+    const filtered = [];
+    if (users.length > 0) {
+      for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        if (user.username.toUpperCase().indexOf(input.toUpperCase()) > -1){
+          filtered.push(user);
+        }
+      }
+    }
+    this.filteredUsers = filtered;
   }
 
   userList() {
-    
+    const { currentUser } = this.props;
+    return this.filteredUsers.map(user => {
+      if (currentUser != user.id) {
+        return (
+          <li
+            key={user.id}
+            className="user-list-item"
+            onClick={() => this.createDM(user.id)}
+          >
+            <img
+              src="https://s3-us-west-1.amazonaws.com/flack-app/img/nophoto.png"
+              alt=""
+              className="post-user-img"
+            />
+            <p className="username">{user.username}</p>
+          </li>
+        );
+      }
+    });
   }
 
   render() {
@@ -58,6 +141,10 @@ class NewDmForm extends React.Component {
             value={name}
             placeholder="Find or start a conversation"
           />
+          <section className="user-list">
+            <h5 className="user-list-head">User list</h5>
+            <ul>{this.userList()}</ul>
+          </section>
         </form>
       </div>
     );

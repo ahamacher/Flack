@@ -15,7 +15,7 @@ class Channel extends React.Component {
     this.state = {
       body: "",
       active: false,
-      userModal: false
+      userModal: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
@@ -195,15 +195,17 @@ class Channel extends React.Component {
 
   channelList() {
     return this.props.channels.map(channel => {
-      return (
-        <li
-          onClick={() => this.channelConnection(channel.id)}
-          key={channel.id}
-          className="channel-list-item"
-        >
-          <ChannelItemContainer channel={channel} />
-        </li>
-      );
+      if (channel.is_dm === false) {
+        return (
+          <li
+            onClick={() => this.channelConnection(channel.id)}
+            key={channel.id}
+            className="channel-list-item"
+          >
+            <ChannelItemContainer channel={channel} />
+          </li>
+        );
+      }
     });
   }
 
@@ -275,7 +277,7 @@ class Channel extends React.Component {
           </li>
           {this.channelList()}
         </ul>
-        <DmListContainer />
+        <DmListContainer channelConnection={this.channelConnection}/>
       </aside>
     );
   }
@@ -308,7 +310,7 @@ class Channel extends React.Component {
     const { activeChannel } = this.props;
     return (
       <div className="channel-container">
-        <ModalRoot />
+        <ModalRoot modalProps={{channelConnection: this.channelConnection}} />
         {this.channelSideBar()}
         {this.channelHead()}
         <div id="message-window">
