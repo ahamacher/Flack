@@ -246,9 +246,8 @@ class Channel extends React.Component {
     );
   }
 
-  channelSideBar() {
+  selectChannelName(){
     const { activeChannel, users, currentUser } = this.props;
-    const { userModal } = this.state;
     let dmTitle = ""
     let dmRecipient = null;
     if (activeChannel.is_dm) {
@@ -259,7 +258,13 @@ class Channel extends React.Component {
       }
       dmTitle = `${users[dmRecipient].username}`
     }
-    const pholder = activeChannel.is_dm ? dmTitle : activeChannel.name.charAt(0).toUpperCase() + activeChannel.name.slice(1)
+    return dmTitle;
+  }
+
+  channelSideBar() {
+    const { activeChannel, users, currentUser } = this.props;
+    const { userModal } = this.state;
+    const pholder = activeChannel.is_dm ? this.selectChannelName() : activeChannel.name.charAt(0).toUpperCase() + activeChannel.name.slice(1)
     const title = pholder;
     return (
       <aside className="channel-list-container">
@@ -298,18 +303,8 @@ class Channel extends React.Component {
   }
 
   messageForm() {
-    const { activeChannel, users, currentUser } = this.props;
-    let dmTitle = ""
-    let dmRecipient = null;
-    if (activeChannel.is_dm) {
-      for (let i = 0; i < activeChannel.ids.length; i++) {
-        if (activeChannel.ids[i] !== currentUser.id) {
-          dmRecipient = activeChannel.ids[i];
-        }
-      }
-      dmTitle = `${users[dmRecipient].username}`
-    }
-    const pholder = activeChannel.is_dm ? dmTitle : activeChannel.name 
+    const { activeChannel } = this.props;
+    const pholder = activeChannel.is_dm ? this.selectChannelName() : activeChannel.name 
     return (
       <div className="message-form-container">
         <div className="form-wrapper">
@@ -333,17 +328,7 @@ class Channel extends React.Component {
   }
 
   render() {
-    const { activeChannel, users, currentUser } = this.props;
-    let dmTitle = ""
-    let dmRecipient = null;
-    if (activeChannel.is_dm) {
-      for (let i = 0; i < activeChannel.ids.length; i++) {
-        if (activeChannel.ids[i] !== currentUser.id) {
-          dmRecipient = activeChannel.ids[i];
-        }
-      }
-      dmTitle = `${users[dmRecipient].username}`
-    }
+    const { activeChannel} = this.props;
     return (
       <div className="channel-container">
         <ModalRoot modalProps={{channelConnection: this.channelConnection}} />
@@ -359,7 +344,7 @@ class Channel extends React.Component {
                   (
                     <>
                         <span> direct messages with </span>
-                        <span className="bold">{dmTitle}</span>
+                        <span className="bold">{this.selectChannelName()}</span>
                     </>
                   ) : (
                     <>

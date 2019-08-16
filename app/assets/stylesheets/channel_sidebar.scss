@@ -31,6 +31,7 @@
 
   .fa-plus-circle {
     color: rgb(197,183,198);
+    cursor: pointer;
   }
 
   .user-modal-container {
@@ -67,6 +68,10 @@
 
   .user-list-item button {
     background: none;
+  }
+
+  .user-list-item:hover button {
+    color: #fff;
   }
 
   .user-list-item {
@@ -131,6 +136,7 @@
     margin: 0;
     list-style: none;
     padding: 0px;
+    margin-top: 12px;
   }
 
   .channel-list-item {
