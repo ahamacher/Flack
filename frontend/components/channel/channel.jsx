@@ -308,7 +308,7 @@ class Channel extends React.Component {
           <span className="message-add">+</span>
           <form onSubmit={this.handleSubmit} className="message-form">
             <textarea
-              className="autoExpand"
+              className="autoExpand disable-scrollbars"
               type="text"
               value={this.state.body}
               onChange={this.update("body")}
@@ -331,7 +331,7 @@ class Channel extends React.Component {
         <ModalRoot modalProps={{channelConnection: this.channelConnection}} />
         {this.channelSideBar()}
         {this.channelHead()}
-        <div id="message-window">
+        <div id="message-window" className="disable-scrollbars">
           <ul className="message-list">
             <li className="list-padding">
               <h4>
