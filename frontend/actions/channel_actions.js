@@ -44,3 +44,9 @@ export const createChannel = channel => dispatch =>
     res => dispatch(receiveChannel(res)),
     err => dispatch(receiveChannelErrors(err))
   );
+
+export const joinChannel = channelId => dispatch =>
+  ChannelApiUtils.joinChannel(channelId).then(
+    res => dispatch(receiveChannel(res)),
+    err => dispatch(receiveChannelErrors(err))
+  );

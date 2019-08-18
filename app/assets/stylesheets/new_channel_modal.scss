@@ -11,12 +11,14 @@
     flex-direction: column;
     padding: 109px 32px;
     font-family: sans-serif;
+    overflow: hidden;
 
     .new-chan-form {
         width: 640px;
         display: flex;
         flex-direction: column;
         align-self: center;
+        height: 100%;
     }
 
     .form-headder {
@@ -247,6 +249,7 @@
 
     .user-list {
         margin-top: 8px;
+        overflow-y: scroll;
     }
 
     .user-list-head {
@@ -254,5 +257,13 @@
         color: #868686;
         margin-top:5px;
         margin-left: 3px;
+    }
+
+    .channel-subtitle {
+        font-size: 12px;
+        color: grey;
+        padding-left: 20px;
+        align-self: flex-end;
+        overflow: hidden;
     }
 }

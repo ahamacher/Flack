@@ -19,3 +19,10 @@ export const fetchChannel = channelId => (
     url: `/api/channels/${channelId}`
   })
 )
+
+export const joinChannel = channelId => (
+  $.ajax({
+    method: "PATCH",
+    url: `/api/channels/${channelId}`
+  })
+)

@@ -11,6 +11,11 @@ export const createDmModal = () => ({
   modalType: "NEW_DM"
 });
 
+export const joinChannelModal = () => ({
+  type: SHOW_MODAL,
+  modalType: "JOIN_CHANNEL"
+});
+
 export const closeModal = () => ({
   type: CLOSE_MODAL
 });

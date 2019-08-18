@@ -8,6 +8,7 @@ import MessageItemContainer from "../message/message_item_container";
 import ChannelItemContainer from "./channel_item_container";
 import DmListContainer from "./dm_list_container";
 import ModalRoot from "../modals/modal_root";
+import { joinChannelModal } from "../../actions/modal_actions";
 
 class Channel extends React.Component {
   constructor(props) {
@@ -259,7 +260,7 @@ class Channel extends React.Component {
   }
 
   channelSideBar() {
-    const { activeChannel, users, currentUser, createChannelModal } = this.props;
+    const { activeChannel, users, currentUser, createChannelModal, joinChannelModal } = this.props;
     const { userModal } = this.state;
     const pholder = activeChannel.is_dm ? this.selectChannelName() : activeChannel.name.charAt(0).toUpperCase() + activeChannel.name.slice(1)
     const title = pholder;
@@ -283,7 +284,12 @@ class Channel extends React.Component {
         <div className="padding-18" />
         <ul className="channel-list">
           <li className="channel-list-head">
-            <span>Channels</span>
+            <span
+            onClick={() => joinChannelModal()}
+            className="join-channel"
+            >
+            Channels
+            </span>
             <button
               type="button"
               className="side-bar-add"
