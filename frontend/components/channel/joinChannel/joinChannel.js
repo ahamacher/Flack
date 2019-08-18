@@ -116,7 +116,7 @@ class JoinChannelForm extends React.Component {
             value={name}
             placeholder="Type a channel to search"
           />
-          <section className="user-list">
+          <section className="user-list disable-scrollbars">
             <h5 className="user-list-head">Channel List</h5>
             <ul className="modal-list disable-scrollbars">{this.channelList()}</ul>
           </section>
