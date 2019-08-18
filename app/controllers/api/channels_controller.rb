@@ -29,6 +29,8 @@ class Api::ChannelsController < ApplicationController
 
   def update
     ChannelJoin.create({channel_id: params[:id], user_id: current_user.id})
+    @channel = Channel.includes(:messages, :users).find_by(id: params[:id])
+    render 'api/channels/show'
   end
 
   ## destroy / update to come later
