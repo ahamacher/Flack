@@ -141,7 +141,7 @@ class NewDmForm extends React.Component {
             value={name}
             placeholder="Find or start a conversation"
           />
-          <section className="user-list">
+          <section className="user-list disable-scrollbars">
             <h5 className="user-list-head">User list</h5>
             <ul>{this.userList()}</ul>
           </section>
