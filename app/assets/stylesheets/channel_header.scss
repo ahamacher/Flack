@@ -7,7 +7,10 @@
     font-family: Arial, Helvetica, sans-serif;
     border-bottom: 1px solid #ddd;
     height: 60px;
-    overflow: hidden;
+    position: fixed;
+    z-index: 1000;
+    width: -webkit-fill-available;
+    width: calc(100vw - 220px);
 
   .channel-name h2 {
     padding: 11px 0px 9px 0px;
