@@ -16,6 +16,11 @@ export const joinChannelModal = () => ({
   modalType: "JOIN_CHANNEL"
 });
 
+export const searchModal = () => ({
+  type: SHOW_MODAL,
+  modalType: "SEARCH"
+});
+
 export const closeModal = () => ({
   type: CLOSE_MODAL
 });

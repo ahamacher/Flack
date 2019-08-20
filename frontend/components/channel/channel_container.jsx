@@ -11,7 +11,7 @@ import {
   deleteMessage
 } from "../../actions/message_actions";
 import { fetchChannels, fetchChannel, createChannel } from "../../actions/channel_actions";
-import { createChannelModal, joinChannelModal } from "../../actions/modal_actions";
+import { createChannelModal, joinChannelModal, searchModal } from "../../actions/modal_actions";
 
 const mapStateToProps = ({ entities, session }) => {
   let currentUserId = session.id;
@@ -46,7 +46,7 @@ const mapStateToProps = ({ entities, session }) => {
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
-  fetchMessages: () => dispatch(fetchMessages()),
+  fetchMessages: query => dispatch(fetchMessages(query)),
   fetchMessage: message => dispatch(fetchMessage(message)),
   createMessage: message => dispatch(createMessage(message)),
   clearMessage: () => dispatch(clearMessage()),
@@ -55,7 +55,8 @@ const mapDispatchToProps = dispatch => ({
   fetchChannels: () => dispatch(fetchChannels()),
   fetchChannel: channelId => dispatch(fetchChannel(channelId)),
   createChannelModal: () => dispatch(createChannelModal()),
-  joinChannelModal: () => dispatch(joinChannelModal())
+  joinChannelModal: () => dispatch(joinChannelModal()),
+  searchModal: () => dispatch(searchModal())
 });
 
 export default connect(

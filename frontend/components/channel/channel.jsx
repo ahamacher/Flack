@@ -8,7 +8,6 @@ import MessageItemContainer from "../message/message_item_container";
 import ChannelItemContainer from "./channel_item_container";
 import DmListContainer from "./dm_list_container";
 import ModalRoot from "../modals/modal_root";
-import { joinChannelModal } from "../../actions/modal_actions";
 
 class Channel extends React.Component {
   constructor(props) {
@@ -16,7 +15,7 @@ class Channel extends React.Component {
     this.state = {
       body: "",
       active: false,
-      userModal: false,
+      userModal: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
@@ -118,13 +117,15 @@ class Channel extends React.Component {
 
   messageList() {
     return this.props.messages.map((message, idx) => {
-      return (
+      if (message.id) {
+        return (
         <MessageItemContainer
           key={message.id}
           message={message}
           className="message-container"
         />
       );
+      }
     });
   }
 
@@ -139,23 +140,24 @@ class Channel extends React.Component {
   }
 
   channelHead() {
-    const { activeChannel } = this.props;
+    const { activeChannel, searchModal } = this.props;
     return (
       <header className="channel-header">
         <div className="head-left">
           <div className="channel-name">
-            {activeChannel.is_dm ? 
-              (<h2># Direct Message</h2>) : 
-              (<h2># {activeChannel.name}</h2>)
-            }
+            {activeChannel.is_dm ? (
+              <h2># Direct Message</h2>
+            ) : (
+              <h2># {activeChannel.name}</h2>
+            )}
           </div>
           <div className="channel-subtitle-info">
             <i className="far fa-star" /> | <i className="far fa-user" />{" "}
-            {activeChannel.ids ? `${activeChannel.ids.length}` : "0" } | <i className="fas fa-thumbtack" /> 0 | {
-              activeChannel.subtitle ? 
-              `${activeChannel.subtitle}` : 
-              ('channel description')
-              }
+            {activeChannel.ids ? `${activeChannel.ids.length}` : "0"} |{" "}
+            <i className="fas fa-thumbtack" /> 0 |{" "}
+            {activeChannel.subtitle
+              ? `${activeChannel.subtitle}`
+              : "channel description"}
           </div>
         </div>
         <div className="head-right">
@@ -189,7 +191,10 @@ class Channel extends React.Component {
                 Channel Settings
               </span>
             </div>{" "}
-            <div className="head-search" />{" "}
+            <div className="head-search" onClick={() => searchModal()}>
+              <i className="fas fa-search"></i>
+              <p>Search</p>
+            </div>
             <div className="icon hover-red">
               <i className="fas fa-at" />
               <span className="tooltip-text tooltip">Show Activity</span>

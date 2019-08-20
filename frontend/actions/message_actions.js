@@ -36,8 +36,8 @@ const clearMessageErrors = () => ({
 
 // taking it to thunky town
 
-export const fetchMessages = () => dispatch =>
-  MessageApiUtils.fetchMessages().then(payload =>
+export const fetchMessages = query => dispatch =>
+  MessageApiUtils.fetchMessages(query).then(payload =>
     dispatch(receiveAllMessages(payload))
   );
 
