@@ -46,6 +46,14 @@
     width: 170px;
     border: 1px solid rgb(134, 134, 134);
     border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .head-search:hover {
+    color: rgb(11, 76, 140);
+    border: 1px solid rgb(48, 48, 48);
   }
 
   .head-left {

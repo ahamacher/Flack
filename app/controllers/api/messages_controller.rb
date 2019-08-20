@@ -1,7 +1,6 @@
 class Api::MessagesController < ApplicationController
   def index
-    ## adding a .includes and a key will grab the though assosications as well in 1 query call
-    @messages = Message.all.includes(:user)
+    @messages = Message.all.where("body like ?", "%#{params[:input]}%").includes(:user)
   end
   
   def show
@@ -13,9 +12,6 @@ class Api::MessagesController < ApplicationController
     @message.author_id = current_user.id
 
     if @message.save
-      ## broadcasting the message to the "messagesChannel"
-      ## can work on multiple dynamic channels later
-
       data = {
         type: "message",
         message: {

@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import NewChannelFormContainer from "../channel/new_channel_form_container";
 import NewDmForm from "../channel/new_dm_form_container";
 import JoinChannelContainer from "../channel/joinChannel/joinChannelContainer";
+import SearchModalContainer from "../channel/messageSearch/messageSearchContainer"
 
 const MODAL_COMPONENTS = {
   NEW_CHANNEL: NewChannelFormContainer,
   NEW_DM: NewDmForm,
-  JOIN_CHANNEL: JoinChannelContainer
+  JOIN_CHANNEL: JoinChannelContainer,
+  SEARCH: SearchModalContainer
 };
 
 const ModalRoot = ({ modalType, modalProps }) => {

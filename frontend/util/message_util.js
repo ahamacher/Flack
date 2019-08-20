@@ -1,10 +1,11 @@
 // remember to come back later and add a channelId to the fetch all messages
 // currently only grabbing ALL messages since testing with one channel.
 
-export const fetchMessages = () => (
+export const fetchMessages = input => (
   $.ajax({
     method: "GET",
-    url: `/api/messages`
+    url: `/api/messages`,
+    data: input
   })
 )
 
