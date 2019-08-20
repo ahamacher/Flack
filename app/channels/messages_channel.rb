@@ -18,7 +18,6 @@ class MessagesChannel < ApplicationCable::Channel
     "MessagesChannel_#{params['room']}:messages"
   end
 
-
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end

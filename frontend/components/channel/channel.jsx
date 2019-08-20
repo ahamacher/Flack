@@ -25,6 +25,7 @@ class Channel extends React.Component {
     this.toggleClass = this.toggleClass.bind(this);
     this.channelConnection = this.channelConnection.bind(this);
     this.channelList = this.channelList.bind(this);
+    // this.ping = this.ping.bind(this);
   }
 
   componentDidMount() {
@@ -34,10 +35,12 @@ class Channel extends React.Component {
 
   componentDidUpdate() {
     this.bottom.current.scrollIntoView();
+    // setInterval(this.ping, 500);
   }
 
   componentWillUnmount() {
     document.removeEventListener("mouseup", this.handleClick, false);
+    // clearInterval(this.ping, 500);
   }
 
   channelConnection(channelId) {
@@ -56,12 +59,16 @@ class Channel extends React.Component {
           // console.log("connected to channel!!!");
         },
         received: data => {
+          debugger;
           switch (data.type) {
             case "message":
               this.props.receiveMessage({ message: data.message });
               break;
             case "delete":
               this.props.deleteMessage(data.delete);
+              break;
+            case "ping":
+              console.log(data);
               break;
           }
         }
@@ -70,6 +77,11 @@ class Channel extends React.Component {
     this.props.fetchChannel(channelId);
     this.bottom.current.scrollIntoView();
   }
+
+  // ping(){
+  //   const { createMessage, currentChannel } = this.props;
+  //   createMessage({ping: "ping", channel_id: currentChannel });
+  // }
 
   handleClick(e) {
     if (this.pop.contains(e.target)) {
