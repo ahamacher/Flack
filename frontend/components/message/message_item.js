@@ -1,4 +1,9 @@
 import React from "react";
+import * as linkify from 'linkifyjs';
+import hashtag from 'linkifyjs/plugins/hashtag';
+import Linkify from 'linkifyjs/react';
+
+hashtag(linkify);
 
 class MessageItem extends React.Component {
   constructor(props) {
@@ -14,6 +19,7 @@ class MessageItem extends React.Component {
     this.handleEnter = this.handleEnter.bind(this);
     this.menuToggle = this.menuToggle.bind(this);
     this.editToggle = this.editToggle.bind(this);
+    this.renderBody = this.renderBody.bind(this);
   }
 
   update(form) {
@@ -156,7 +162,10 @@ class MessageItem extends React.Component {
           </div>
           <div className="message-body">
             {this.messageModal()}
-            {message.body}
+            {this.renderBody()}
+            {/* <Linkify component="button" properties={{onClick: function onClick() {alert('Success!') }}}>
+              {message.body}
+            </Linkify> */}
           </div>
         </div>
       </>
@@ -195,6 +204,17 @@ class MessageItem extends React.Component {
         </div>
       </>
     );
+  }
+
+  renderBody() {
+    if (this.props.message) {
+      const { body } = this.props.message;
+      return (
+      <Linkify>
+        {body}
+      </Linkify>
+      )
+    }
   }
 
   render() {

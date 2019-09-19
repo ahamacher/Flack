@@ -117,7 +117,7 @@ class Channel extends React.Component {
 
   messageList() {
     return this.props.messages.map((message, idx) => {
-      if (message.id) {
+      if (message && message.id) {
         return (
         <MessageItemContainer
           key={message.id}

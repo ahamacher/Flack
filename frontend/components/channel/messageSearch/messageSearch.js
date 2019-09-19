@@ -78,21 +78,19 @@ class MessageSearch extends React.Component {
       let username = "";
       if (users[message.author_id]) {
         username = users[message.author_id].username;
-      } else {
-        username = message.username;
       }
-    return (
-      <li key={message.id} className="post-list">
-        {this.userImage()}
-        <div className="post-content">
-          <div className="post-user">
-            {username}
-            <span> {message.timestamp}</span>
+      return (
+        <li key={message.id} className="post-list">
+          {this.userImage()}
+          <div className="post-content">
+            <div className="post-user">
+              {username}
+              <span> {message.timestamp}</span>
+            </div>
+            <div className="message-body">{message.body}</div>
           </div>
-          <div className="message-body">{message.body}</div>
-        </div>
-      </li>
-    )
+        </li>
+      )
     });
   }
 
