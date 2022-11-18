@@ -39,6 +39,6 @@
     "eslint-plugin-react": "^7.14.3",
     "prettier": "^1.18.2",
     "prettier-eslint": "^8.8.2",
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^3.3.12"
   }
 }
